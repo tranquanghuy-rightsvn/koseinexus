@@ -680,21 +680,674 @@
     }
   }
 
-  .dummy {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 80px 40px;
+  /* ===== Shared section shell ===== */
+  .section {
+    padding: 100px 0;
   }
 
-  .dummy h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
+  .section--gray {
+    background: #eef0f2;
+  }
+
+  .section__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .section__label {
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    margin-bottom: 10px;
+  }
+
+  .section__title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 48px;
+  }
+
+  /* bordered "view more" button */
+  .btn-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 36px;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    font-size: 15px;
+    font-weight: 700;
+    transition: background .25s, color .25s;
+  }
+
+  .btn-more::after {
+    content: "→";
+    font-size: 18px;
+    transition: transform .25s;
+  }
+
+  .btn-more:hover {
+    background: var(--primary);
+    color: #fff;
+  }
+
+  .btn-more:hover::after {
+    transform: translateX(4px);
+  }
+
+  /* ===== 3. Company overview ===== */
+  .overview__grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .overview__text p {
+    font-size: 16px;
+    line-height: 2.2;
+    color: #333;
+    margin-bottom: 36px;
+  }
+
+  .overview__photo {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .overview__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ===== 4. Strengths ===== */
+  .strengths__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .strength-card {
+    background: #fff;
+    padding: 48px 36px;
+    text-align: center;
+    border-top: 3px solid var(--primary);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .04);
+  }
+
+  .strength-card__icon {
+    width: 84px;
+    height: 84px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    background: #e8f0fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+  }
+
+  .strength-card__icon svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .strength-card h3 {
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: #1a1a1a;
+  }
+
+  .strength-card p {
+    font-size: 14.5px;
+    line-height: 2;
+    color: #444;
+    text-align: left;
+  }
+
+  .strength-card p strong {
     color: var(--primary-dark);
   }
 
-  .dummy p {
-    line-height: 2;
+  /* ===== 5. Works (製作実績) ===== */
+  .works__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px 32px;
+    margin-bottom: 28px;
+  }
+
+  .work-card figure {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    margin-bottom: 14px;
+    background: #dde1e5;
+  }
+
+  .work-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+  }
+
+  .work-card:hover img {
+    transform: scale(1.05);
+  }
+
+  /* confidentiality mask on sensitive shots */
+  .work-card.is-masked img {
+    filter: blur(7px);
+    transform: scale(1.08);
+  }
+
+  .work-card.is-masked figure::after {
+    content: "機密保持のため画像処理済み";
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 6px 10px;
+    font-size: 11px;
+    color: #fff;
+    background: rgba(0, 0, 0, .55);
+    text-align: center;
+  }
+
+  .work-card__tag {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 2px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+
+  .work-card h3 {
+    font-size: 16.5px;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+  }
+
+  .work-card dl {
+    font-size: 13.5px;
+    color: #555;
+    line-height: 1.9;
+  }
+
+  .work-card dl div {
+    display: flex;
+    gap: 10px;
+  }
+
+  .work-card dt {
+    flex-shrink: 0;
+    color: #888;
+  }
+
+  .works__note {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 44px;
+  }
+
+  .section__foot {
+    text-align: center;
+  }
+
+  /* ===== 6. Equipment (主要設備) ===== */
+  .equipment__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-bottom: 56px;
+  }
+
+  .equip-card {
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
+  }
+
+  .equip-card figure {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .equip-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .equip-card__body {
+    padding: 20px 22px 26px;
+  }
+
+  .equip-card__maker {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: .08em;
+    margin-bottom: 6px;
+  }
+
+  .equip-card h3 {
+    font-size: 17px;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+
+  .equip-card table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    color: #555;
+  }
+
+  .equip-card th,
+  .equip-card td {
+    text-align: left;
+    padding: 6px 0;
+    border-top: 1px solid #eee;
+    font-weight: 400;
+  }
+
+  .equip-card th {
+    width: 5.5em;
+    color: #888;
+  }
+
+  /* ===== 7. Flow (ご利用の流れ) ===== */
+  .flow__steps {
+    display: flex;
+    gap: 0;
+    counter-reset: flow;
+  }
+
+  .flow-step {
+    flex: 1;
+    position: relative;
+    text-align: center;
+    padding: 0 18px;
+  }
+
+  /* arrow between steps */
+  .flow-step + .flow-step::before {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 34px;
+    width: 14px;
+    height: 14px;
+    border-top: 2px solid var(--primary);
+    border-right: 2px solid var(--primary);
+    transform: rotate(45deg);
+  }
+
+  .flow-step__num {
+    counter-increment: flow;
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .flow-step__num::before {
+    content: counter(flow);
+  }
+
+  .flow-step h3 {
+    font-size: 16.5px;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+  }
+
+  .flow-step p {
+    font-size: 13.5px;
+    line-height: 1.9;
+    color: #555;
+    text-align: left;
+  }
+
+  /* ===== 8. News (お知らせ) ===== */
+  .news__list {
+    list-style: none;
+    border-top: 1px solid #ddd;
+    margin-bottom: 44px;
+  }
+
+  .news__list li {
+    border-bottom: 1px solid #ddd;
+  }
+
+  .news__list a {
+    display: flex;
+    align-items: baseline;
+    gap: 28px;
+    padding: 24px 8px;
+    transition: background .2s;
+  }
+
+  .news__list a:hover {
+    background: #f5f7f9;
+  }
+
+  .news__date {
+    flex-shrink: 0;
+    font-size: 14px;
+    color: #888;
+    font-family: Georgia, serif;
+    letter-spacing: .04em;
+  }
+
+  .news__cat {
+    flex-shrink: 0;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 999px;
+    padding: 2px 12px;
+    align-self: center;
+  }
+
+  .news__title {
+    font-size: 15.5px;
+    color: #1a1a1a;
+    line-height: 1.7;
+  }
+
+  /* ===== 9. Contact + Footer ===== */
+  .contact {
+    background: linear-gradient(135deg, var(--primary-dark), #0d3160);
+    color: #fff;
+    padding: 100px 0;
+  }
+
+  .contact .section__label {
+    color: #9ec4ee;
+  }
+
+  .contact .section__title {
+    color: #fff;
     margin-bottom: 16px;
+  }
+
+  .contact__lead {
+    font-size: 15px;
+    line-height: 2;
+    margin-bottom: 48px;
+    color: #d8e4f2;
+  }
+
+  .contact__form {
+    background: #fff;
+    color: var(--text);
+    padding: 56px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .form-row {
+    margin-bottom: 26px;
+  }
+
+  .form-row label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+  }
+
+  .form-row .req {
+    display: inline-block;
+    font-size: 11px;
+    color: #fff;
+    background: #c0392b;
+    border-radius: 3px;
+    padding: 1px 8px;
+    margin-left: 8px;
+    vertical-align: 2px;
+  }
+
+  .form-row input[type="text"],
+  .form-row input[type="email"],
+  .form-row textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 12px 14px;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+  }
+
+  .form-row input:focus,
+  .form-row textarea:focus {
+    border-color: var(--primary);
+  }
+
+  .form-row textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+
+  /* drawing-file attach */
+  .file-attach {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .file-attach input[type="file"] {
+    display: none;
+  }
+
+  .file-attach__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px dashed var(--primary);
+    color: var(--primary);
+    background: #f2f7fd;
+    padding: 12px 22px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background .2s;
+  }
+
+  .file-attach__btn:hover {
+    background: #e3eefb;
+  }
+
+  .file-attach__name {
+    font-size: 13.5px;
+    color: #555;
+  }
+
+  .file-attach__hint {
+    width: 100%;
+    font-size: 12.5px;
+    color: #888;
+  }
+
+  .contact__submit {
+    display: block;
+    width: 320px;
+    max-width: 100%;
+    margin: 40px auto 0;
+    background: var(--primary);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 18px 0;
+    border-radius: 4px;
+    transition: opacity .2s;
+  }
+
+  .contact__submit:hover {
+    opacity: .88;
+  }
+
+  /* footer */
+  .footer {
+    background: #101c2c;
+    color: #cfd8e3;
+  }
+
+  .footer__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 70px 40px 50px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1.3fr;
+    gap: 50px;
+  }
+
+  .footer__brand .logo__name {
+    color: #fff;
+    font-size: 22px;
+    display: block;
+    margin-bottom: 18px;
+  }
+
+  .footer__brand address {
+    font-style: normal;
+    font-size: 14px;
+    line-height: 2.1;
+  }
+
+  .footer__brand a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .footer__nav ul {
+    list-style: none;
+  }
+
+  .footer__nav li {
+    margin-bottom: 12px;
+  }
+
+  .footer__nav a {
+    font-size: 14px;
+    transition: color .2s;
+  }
+
+  .footer__nav a:hover {
+    color: #fff;
+  }
+
+  .footer__map iframe {
+    width: 100%;
+    height: 240px;
+    border: 0;
+    display: block;
+    filter: grayscale(.2);
+  }
+
+  .footer__copy {
+    border-top: 1px solid rgba(255, 255, 255, .12);
+    text-align: center;
+    font-size: 12.5px;
+    padding: 22px 16px;
+    color: #8fa0b5;
+  }
+
+  /* ===== responsive for the new sections ===== */
+  @media (max-width: 1100px) {
+    .section {
+      padding: 64px 0;
+    }
+
+    .section__inner {
+      padding: 0 16px;
+    }
+
+    .section__title {
+      font-size: 26px;
+      margin-bottom: 32px;
+    }
+
+    .overview__grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .strengths__grid,
+    .works__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px 20px;
+    }
+
+    .equipment__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px 20px;
+    }
+
+    /* flow becomes vertical */
+    .flow__steps {
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .flow-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 22px;
+      text-align: left;
+      padding: 0;
+    }
+
+    .flow-step__num {
+      margin: 0;
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      font-size: 20px;
+    }
+
+    .flow-step + .flow-step::before {
+      left: 21px;
+      top: -28px;
+      transform: rotate(135deg);
+    }
+
+    .contact__form {
+      padding: 32px 20px;
+    }
+
+    .footer__inner {
+      grid-template-columns: 1fr;
+      gap: 36px;
+      padding: 50px 16px 40px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .strengths__grid,
+    .works__grid,
+    .equipment__grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* ===== Responsive ===== */
@@ -996,11 +1649,364 @@
   </div>
 </section>
 
-<section class="dummy">
-  <h2>ダミーコンテンツ</h2>
-  <p>ページをスクロールすると、ヘッダーメニューが画面上部に固定されていることを確認できます。</p>
-  <p style="height: 800px;"></p>
+<!-- 3. Company overview -->
+<section class="section" id="about">
+  <div class="section__inner">
+    <p class="section__label">COMPANY</p>
+    <h2 class="section__title">会社紹介</h2>
+    <div class="overview__grid">
+      <div class="overview__text">
+        <p>
+          興盛ネクサス株式会社は、ベトナム・ハノイ市近郊（バクニン省）に工場を構える精密機械加工メーカーです。
+          創業以来10年以上にわたり、日系メーカー様を中心に治具・精密部品の設計・製作を手がけてまいりました。
+          「品質第一・納期厳守」を経営理念とし、日本品質の基準で一つひとつの製品と向き合っています。
+          お客様の図面の意図を正確に汲み取り、期待を超えるモノづくりでお応えします。
+        </p>
+        <a class="btn-more" href="#">会社紹介を詳しく見る</a>
+      </div>
+      <figure class="overview__photo">
+        <img src="images/04.jpeg" alt="興盛ネクサスの工場内観">
+      </figure>
+    </div>
+  </div>
 </section>
+
+<!-- 4. Strengths -->
+<section class="section section--gray" id="strengths">
+  <div class="section__inner">
+    <p class="section__label">STRENGTHS</p>
+    <h2 class="section__title">私たちの強み</h2>
+    <div class="strengths__grid">
+      <div class="strength-card">
+        <div class="strength-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <circle cx="12" cy="12" r="4.5"/>
+            <circle cx="12" cy="12" r="0.8" fill="currentColor"/>
+            <line x1="12" y1="1" x2="12" y2="5"/>
+            <line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="1" y1="12" x2="5" y2="12"/>
+            <line x1="19" y1="12" x2="23" y2="12"/>
+          </svg>
+        </div>
+        <h3>高精度加工</h3>
+        <p>
+          公差<strong>±0.005mm〜±0.01mm</strong>の高精度加工に対応。恒温環境での仕上げ・三次元測定機による全数検査で、ミクロン単位の品質を安定して実現します。
+        </p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 21l6-1.5L20.5 8a2.1 2.1 0 0 0-3-3L6 16.5 4.5 21z"/>
+            <path d="M14.5 6.5l3 3"/>
+            <path d="M3 8V4.5A1.5 1.5 0 0 1 4.5 3H8"/>
+          </svg>
+        </div>
+        <h3>治具設計力</h3>
+        <p>
+          日本語図面を読み解ける経験豊富なエンジニアが在籍。<strong>段取り時間を短縮する治具の最適化提案</strong>まで含めて、設計から一貫対応いたします。
+        </p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M1 8h13v9H1z"/>
+            <path d="M14 11h4l3 3v3h-7z"/>
+            <circle cx="5.5" cy="19" r="1.8"/>
+            <circle cx="17.5" cy="19" r="1.8"/>
+            <path d="M4 5.5h6M2 3h6"/>
+          </svg>
+        </div>
+        <h3>納期とコスト</h3>
+        <p>
+          お見積りは最短即日回答。ベトナム生産によるコスト競争力と、<strong>納期遵守率100%</strong>の生産管理体制で、安心してお任せいただけます。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Works -->
+<section class="section" id="works">
+  <div class="section__inner">
+    <p class="section__label">WORKS</p>
+    <h2 class="section__title">製作実績</h2>
+    <div class="works__grid">
+      <div class="work-card">
+        <figure><img src="images/01.jpeg" alt="加工用治具"></figure>
+        <span class="work-card__tag">加工用治具</span>
+        <h3>マシニング用クランプ治具</h3>
+        <dl>
+          <div><dt>材質</dt><dd>S45C（焼入れ処理）</dd></div>
+          <div><dt>精度</dt><dd>±0.01mm</dd></div>
+        </dl>
+      </div>
+      <div class="work-card is-masked">
+        <figure><img src="images/02.jpeg" alt="検査治具"></figure>
+        <span class="work-card__tag">検査治具</span>
+        <h3>寸法検査用ゲージ治具</h3>
+        <dl>
+          <div><dt>材質</dt><dd>SUS304</dd></div>
+          <div><dt>精度</dt><dd>±0.005mm</dd></div>
+        </dl>
+      </div>
+      <div class="work-card">
+        <figure><img src="images/03.jpeg" alt="精密機械部品"></figure>
+        <span class="work-card__tag">精密機械部品</span>
+        <h3>搬送装置用シャフト</h3>
+        <dl>
+          <div><dt>材質</dt><dd>SUS303</dd></div>
+          <div><dt>精度</dt><dd>±0.008mm</dd></div>
+        </dl>
+      </div>
+      <div class="work-card">
+        <figure><img src="images/04.jpeg" alt="加工用治具"></figure>
+        <span class="work-card__tag">加工用治具</span>
+        <h3>溶接位置決め治具</h3>
+        <dl>
+          <div><dt>材質</dt><dd>SS400</dd></div>
+          <div><dt>精度</dt><dd>±0.02mm</dd></div>
+        </dl>
+      </div>
+      <div class="work-card is-masked">
+        <figure><img src="images/01.jpeg" alt="検査治具"></figure>
+        <span class="work-card__tag">検査治具</span>
+        <h3>組立確認用チェック治具</h3>
+        <dl>
+          <div><dt>材質</dt><dd>A5052＋SUS304</dd></div>
+          <div><dt>精度</dt><dd>±0.01mm</dd></div>
+        </dl>
+      </div>
+      <div class="work-card">
+        <figure><img src="images/02.jpeg" alt="精密機械部品"></figure>
+        <span class="work-card__tag">精密機械部品</span>
+        <h3>金型用コアピン</h3>
+        <dl>
+          <div><dt>材質</dt><dd>SKD61</dd></div>
+          <div><dt>精度</dt><dd>±0.005mm</dd></div>
+        </dl>
+      </div>
+    </div>
+    <p class="works__note">※機密保持のため、一部の製品画像は加工・マスキング処理を施しています。</p>
+    <div class="section__foot">
+      <a class="btn-more" href="#">製作実績をすべて見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Equipment -->
+<section class="section section--gray" id="equipment">
+  <div class="section__inner">
+    <p class="section__label">EQUIPMENT</p>
+    <h2 class="section__title">主要設備</h2>
+    <div class="equipment__grid">
+      <div class="equip-card">
+        <figure><img src="images/01.jpeg" alt="立形マシニングセンタ"></figure>
+        <div class="equip-card__body">
+          <p class="equip-card__maker">MAZAK（日本）</p>
+          <h3>立形マシニングセンタ<br>VCN-530C</h3>
+          <table>
+            <tr><th>X-Y-Z</th><td>1,050 × 530 × 510 mm</td></tr>
+            <tr><th>主軸回転</th><td>12,000 min⁻¹</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="equip-card">
+        <figure><img src="images/02.jpeg" alt="ワイヤ放電加工機"></figure>
+        <div class="equip-card__body">
+          <p class="equip-card__maker">SODICK（日本）</p>
+          <h3>ワイヤ放電加工機<br>AL400G</h3>
+          <table>
+            <tr><th>X-Y-Z</th><td>400 × 300 × 250 mm</td></tr>
+            <tr><th>最良面粗さ</th><td>Rz 1.0 µm</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="equip-card">
+        <figure><img src="images/03.jpeg" alt="CNC旋盤"></figure>
+        <div class="equip-card__body">
+          <p class="equip-card__maker">OKUMA（日本）</p>
+          <h3>CNC旋盤<br>GENOS L250-e</h3>
+          <table>
+            <tr><th>最大加工径</th><td>φ250 mm</td></tr>
+            <tr><th>加工長さ</th><td>390 mm</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="equip-card">
+        <figure><img src="images/04.jpeg" alt="三次元測定機"></figure>
+        <div class="equip-card__body">
+          <p class="equip-card__maker">MITUTOYO（日本）</p>
+          <h3>CNC三次元測定機<br>CRYSTA-Apex S 9106</h3>
+          <table>
+            <tr><th>X-Y-Z</th><td>900 × 1,000 × 600 mm</td></tr>
+            <tr><th>最大許容誤差</th><td>(1.7+3L/1000) µm</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="section__foot">
+      <a class="btn-more" href="#">設備一覧をすべて見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Flow -->
+<section class="section" id="flow">
+  <div class="section__inner">
+    <p class="section__label">FLOW</p>
+    <h2 class="section__title">ご利用の流れ</h2>
+    <div class="flow__steps">
+      <div class="flow-step">
+        <div class="flow-step__num" aria-hidden="true"></div>
+        <div>
+          <h3>図面・ご要望の送付</h3>
+          <p>お問い合わせフォームより図面（PDF・STEP・DXF）をお送りください。ポンチ絵からのご相談も歓迎です。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step__num" aria-hidden="true"></div>
+        <div>
+          <h3>ご相談・お見積り</h3>
+          <p>内容を確認のうえ、最短即日〜2営業日でお見積りをご提示。仕様のご相談は日本語で対応します。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step__num" aria-hidden="true"></div>
+        <div>
+          <h3>設計・ご承認</h3>
+          <p>治具設計の場合は3Dモデル・組図をご提出し、お客様のご承認をいただいてから製作へ進みます。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step__num" aria-hidden="true"></div>
+        <div>
+          <h3>加工・品質検査</h3>
+          <p>社内一貫体制で加工。三次元測定機による検査成績書を全品に添付し、品質を保証します。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step__num" aria-hidden="true"></div>
+        <div>
+          <h3>納品</h3>
+          <p>防錆・梱包にも配慮し、ご指定の場所へ納品。日本向けの輸出手配にも対応しています。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. News -->
+<section class="section section--gray" id="news">
+  <div class="section__inner">
+    <p class="section__label">NEWS</p>
+    <h2 class="section__title">お知らせ</h2>
+    <ul class="news__list">
+      <li>
+        <a href="#">
+          <span class="news__date">2026.07.01</span>
+          <span class="news__cat">設備</span>
+          <span class="news__title">立形マシニングセンタ（MAZAK VCN-530C）を新規導入しました</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <span class="news__date">2026.06.15</span>
+          <span class="news__cat">取り組み</span>
+          <span class="news__title">全社員参加の5S活動・品質研修を実施しました</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <span class="news__date">2026.04.28</span>
+          <span class="news__cat">お知らせ</span>
+          <span class="news__title">ベトナム建国記念日にともなう休業日のお知らせ（9/1〜9/2）</span>
+        </a>
+      </li>
+    </ul>
+    <div class="section__foot">
+      <a class="btn-more" href="#">お知らせ一覧へ</a>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Contact -->
+<section class="contact" id="contact">
+  <div class="section__inner">
+    <p class="section__label">CONTACT</p>
+    <h2 class="section__title">お問い合わせ</h2>
+    <p class="contact__lead">
+      治具・精密部品の製作に関するご相談、お見積りのご依頼はこちらから。<br>
+      図面を添付いただければ、最短即日でご回答いたします。
+    </p>
+    <form class="contact__form" action="#" method="post">
+      <div class="form-row">
+        <label for="f-company">会社名<span class="req">必須</span></label>
+        <input type="text" id="f-company" name="company" required>
+      </div>
+      <div class="form-row">
+        <label for="f-name">ご担当者名<span class="req">必須</span></label>
+        <input type="text" id="f-name" name="name" required>
+      </div>
+      <div class="form-row">
+        <label for="f-email">メールアドレス<span class="req">必須</span></label>
+        <input type="email" id="f-email" name="email" required>
+      </div>
+      <div class="form-row">
+        <label for="f-message">お問い合わせ内容<span class="req">必須</span></label>
+        <textarea id="f-message" name="message" required></textarea>
+      </div>
+      <div class="form-row">
+        <label>図面ファイル添付</label>
+        <div class="file-attach">
+          <label class="file-attach__btn" for="f-file">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <path d="M21 12.5l-8.2 8.2a5.4 5.4 0 0 1-7.6-7.6l8.8-8.8a3.6 3.6 0 0 1 5.1 5.1l-8.8 8.8a1.8 1.8 0 0 1-2.5-2.5l8.1-8.1"/>
+            </svg>
+            ファイルを選択
+          </label>
+          <input type="file" id="f-file" name="drawing" accept=".pdf,.step,.stp,.dxf,.dwg,.igs,.iges,.zip">
+          <span class="file-attach__name" id="fileName">選択されていません</span>
+          <span class="file-attach__hint">対応形式：PDF / STEP / DXF / DWG / IGES / ZIP（最大20MB）</span>
+        </div>
+      </div>
+      <button type="submit" class="contact__submit">送信する</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <span class="logo__name">興盛ネクサス株式会社</span>
+      <address>
+        Lô XX, KCN Quế Võ, Bắc Ninh, Việt Nam<br>
+        TEL：<a href="tel:+842221234567">+84-222-123-4567</a><br>
+        MAIL：<a href="mailto:info@kosei-nexus.example">info@kosei-nexus.example</a><br>
+        営業時間：8:00〜17:00（月〜土 / 日本語対応可）
+      </address>
+    </div>
+    <nav class="footer__nav" aria-label="フッターナビゲーション">
+      <ul>
+        <li><a href="#about">会社紹介</a></li>
+        <li><a href="#strengths">私たちの強み</a></li>
+        <li><a href="#works">製作実績</a></li>
+        <li><a href="#equipment">主要設備</a></li>
+        <li><a href="#flow">ご利用の流れ</a></li>
+        <li><a href="#news">お知らせ</a></li>
+        <li><a href="#contact">お問い合わせ</a></li>
+      </ul>
+    </nav>
+    <div class="footer__map">
+      <iframe
+        src="https://maps.google.com/maps?q=Que%20Vo%20Industrial%20Park%2C%20Bac%20Ninh%2C%20Vietnam&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="興盛ネクサス株式会社 アクセスマップ"></iframe>
+    </div>
+  </div>
+  <p class="footer__copy">© 2026 Kosei Nexus Co., Ltd. All Rights Reserved.</p>
+</footer>
 
 <script>
   const drawer = document.getElementById('drawer');
@@ -1032,6 +2038,15 @@
       btn.setAttribute('aria-expanded', expanded);
     });
   });
+
+  // ---------- contact form: show attached drawing filename ----------
+  const fileInput = document.getElementById('f-file');
+  const fileNameEl = document.getElementById('fileName');
+  if (fileInput) {
+    fileInput.addEventListener('change', () => {
+      fileNameEl.textContent = fileInput.files.length ? fileInput.files[0].name : '選択されていません';
+    });
+  }
 
   // ---------- PICK UP slider ----------
   const pickupViewport = document.getElementById('pickupViewport');
