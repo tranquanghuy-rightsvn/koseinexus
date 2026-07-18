@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>興盛ネクサス株式会社</title>
+<title>会社紹介 | 興盛ネクサス株式会社</title>
 <style>
   :root {
     --primary: #1b62b5;
@@ -724,12 +724,8 @@
   }
 
   /* ===== 5. Our Products ===== */
-  #works .slider {
+  .works .slider {
     margin-bottom: 28px;
-  }
-
-  #works .section__foot {
-    margin-top: 40px;
   }
 
   .work-card figure {
@@ -1179,6 +1175,348 @@
     }
   }
 
+  /* ===== about page ===== */
+  .page-hero {
+    position: relative;
+    height: 380px;
+    background: url('../images/header-2.png') center / cover no-repeat;
+    display: flex;
+    align-items: center;
+    color: #fff;
+  }
+
+  .page-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 16, 28, .62);
+  }
+
+  .page-hero__inner {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    width: 100%;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(36px, 4.2vw, 60px);
+    font-weight: 700;
+    letter-spacing: .08em;
+    line-height: 1.2;
+    background: linear-gradient(100deg,
+      rgba(200, 212, 225, .95) 0%,
+      rgba(245, 250, 255, .98) 45%,
+      rgba(165, 185, 205, .95) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .page-hero__sub {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .28em;
+    color: #9ec4ee;
+    margin-bottom: 12px;
+  }
+
+  .breadcrumb {
+    background: #f5f7f9;
+    font-size: 13px;
+    color: #777;
+  }
+
+  .breadcrumb ol {
+    list-style: none;
+    display: flex;
+    gap: 8px;
+    padding: 14px 0;
+  }
+
+  .breadcrumb li + li::before {
+    content: "›";
+    margin-right: 8px;
+    color: #aaa;
+  }
+
+  .breadcrumb a {
+    color: var(--primary);
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  /* company profile table */
+  .profile-table {
+    width: 100%;
+    max-width: 900px;
+    border-collapse: collapse;
+  }
+
+  .profile-table th,
+  .profile-table td {
+    text-align: left;
+    padding: 24px 20px;
+    border-bottom: 1px solid #ddd;
+    font-size: 15px;
+    line-height: 1.9;
+    vertical-align: top;
+  }
+
+  .profile-table th {
+    width: 220px;
+    background: #f6f8fa;
+    color: var(--primary-dark);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .profile-table td a {
+    color: var(--primary);
+  }
+
+  /* access */
+  .access__address {
+    font-size: 15px;
+    line-height: 2;
+    margin-bottom: 28px;
+  }
+
+  .access__map iframe {
+    width: 100%;
+    height: 440px;
+    border: 0;
+    display: block;
+  }
+
+  @media (max-width: 1100px) {
+    .page-hero {
+      height: 240px;
+    }
+
+    .page-hero__inner {
+      padding: 0 16px;
+    }
+
+    .breadcrumb ol {
+      padding: 12px 16px;
+    }
+
+    .profile-table th,
+    .profile-table td {
+      display: block;
+      width: auto;
+      padding: 14px 12px;
+    }
+
+    .profile-table th {
+      border-bottom: none;
+      padding-bottom: 4px;
+    }
+
+    .access__map iframe {
+      height: 300px;
+    }
+  }
+
+  /* ===== about: unified intro ===== */
+  .about-profile {
+    margin-top: 70px;
+  }
+
+  /* ===== timeline (沿革) ===== */
+  .timeline {
+    position: relative;
+    max-width: 820px;
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 130px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: #c9d4e0;
+  }
+
+  .timeline__item {
+    position: relative;
+    display: flex;
+    gap: 56px;
+    padding-bottom: 46px;
+  }
+
+  .timeline__item:last-child {
+    padding-bottom: 0;
+  }
+
+  .timeline__item::before {
+    content: "";
+    position: absolute;
+    left: 124px;
+    top: 5px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--primary);
+    box-sizing: border-box;
+  }
+
+  .timeline__year {
+    flex: 0 0 100px;
+    text-align: right;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--primary);
+    font-family: Georgia, serif;
+    letter-spacing: .04em;
+  }
+
+  .timeline__body h3 {
+    font-size: 16.5px;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+  }
+
+  .timeline__body p {
+    font-size: 14px;
+    line-height: 1.9;
+    color: #555;
+  }
+
+  /* ===== vision ===== */
+  .vision__statement {
+    font-size: clamp(26px, 3vw, 40px);
+    font-weight: 700;
+    line-height: 1.6;
+    color: var(--primary-dark);
+    margin-bottom: 28px;
+  }
+
+  .vision__text {
+    max-width: 820px;
+    font-size: 15.5px;
+    line-height: 2.2;
+    color: #333;
+  }
+
+  /* ===== quality commitment ===== */
+  .quality__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .quality-item {
+    background: #fff;
+    padding: 30px 32px;
+    display: flex;
+    gap: 18px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .04);
+  }
+
+  .quality-item__check {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    color: var(--primary);
+  }
+
+  .quality-item h3 {
+    font-size: 16.5px;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+  }
+
+  .quality-item p {
+    font-size: 14px;
+    line-height: 1.9;
+    color: #555;
+  }
+
+  /* ===== bottom CTA ===== */
+  .about-cta {
+    background: linear-gradient(135deg, var(--primary-dark), #0d3160);
+    color: #fff;
+    text-align: center;
+    padding: 100px 40px;
+  }
+
+  .about-cta__sub {
+    font-size: 14px;
+    letter-spacing: .3em;
+    color: #9ec4ee;
+    margin-bottom: 18px;
+  }
+
+  .about-cta__slogan {
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 700;
+    letter-spacing: .06em;
+    margin-bottom: 44px;
+  }
+
+  .about-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 52px;
+    background: #fff;
+    color: var(--primary-dark);
+    font-size: 16px;
+    font-weight: 700;
+    transition: opacity .25s, transform .25s;
+  }
+
+  .about-cta__btn::after {
+    content: "→";
+    font-size: 18px;
+    transition: transform .25s;
+  }
+
+  .about-cta__btn:hover {
+    opacity: .9;
+  }
+
+  .about-cta__btn:hover::after {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 1100px) {
+    .timeline::before {
+      left: 7px;
+    }
+
+    .timeline__item {
+      flex-direction: column;
+      gap: 6px;
+      padding-left: 32px;
+      padding-bottom: 34px;
+    }
+
+    .timeline__item::before {
+      left: 1px;
+    }
+
+    .timeline__year {
+      flex: none;
+      text-align: left;
+    }
+
+    .quality__list {
+      grid-template-columns: 1fr;
+    }
+
+    .about-cta {
+      padding: 64px 20px;
+    }
+  }
+
   /* ===== responsive for the new sections ===== */
   @media (max-width: 1100px) {
     .section {
@@ -1334,7 +1672,7 @@
   <div class="header__inner">
 
     <!-- Logo -->
-    <a href="#" class="logo">
+    <a href="../" class="logo">
       <svg class="logo__mark" viewBox="8 13.5 90.5 88.5" aria-hidden="true">
         <g class="gear-rot gear-big"></g>
         <g class="gear-rot gear-small"></g>
@@ -1359,11 +1697,11 @@
 
       <nav class="gnav" aria-label="グローバルナビゲーション">
         <ul>
-          <li><a href="about-us/">会社紹介</a></li>
-          <li><a href="products/">製品紹介</a></li>
-          <li><a href="our-equipments/">主要設備</a></li>
-          <li><a href="news/">お知らせ</a></li>
-          <li><a href="contact-us/">お問い合わせ</a></li>
+          <li><a href="./">会社紹介</a></li>
+          <li><a href="../products/">製品紹介</a></li>
+          <li><a href="../our-equipments/">主要設備</a></li>
+          <li><a href="../news/">お知らせ</a></li>
+          <li><a href="../contact-us/">お問い合わせ</a></li>
         </ul>
       </nav>
     </div>
@@ -1393,345 +1731,187 @@
 
   <nav class="drawer__nav" aria-label="モバイルナビゲーション">
     <ul>
-      <li><a class="drawer__item" href="about-us/">会社紹介</a></li>
-      <li><a class="drawer__item" href="products/">製品紹介</a></li>
-      <li><a class="drawer__item" href="our-equipments/">主要設備</a></li>
-      <li><a class="drawer__item" href="news/">お知らせ</a></li>
-      <li><a class="drawer__item" href="contact-us/">お問い合わせ</a></li>
+      <li><a class="drawer__item" href="./">会社紹介</a></li>
+      <li><a class="drawer__item" href="../products/">製品紹介</a></li>
+      <li><a class="drawer__item" href="../our-equipments/">主要設備</a></li>
+      <li><a class="drawer__item" href="../news/">お知らせ</a></li>
+      <li><a class="drawer__item" href="../contact-us/">お問い合わせ</a></li>
     </ul>
   </nav>
 </div>
 
-<!-- Hero: full-screen Ken Burns loop + dark overlay sliding over it -->
-<div class="hero-stack">
-<section class="hero" id="kbHero">
-  <div class="kb-slide active" style="background-image:url('images/header-1.png')"></div>
-  <div class="kb-slide" style="background-image:url('images/header-2.png')"></div>
-  <div class="kb-slide" style="background-image:url('images/header-3.png')"></div>
-  <div class="kb-overlay"></div>
-</section>
-
-<!-- layer-1 text: absolute in the stack, so it scrolls up while the hero stays pinned -->
-<div class="hero-caption">
-  <div class="hero__inner">
-    <h1>
-      <span class="hero__line-sub">つなぐ・つたえる・つくりだす</span>
-      <span class="hero__line-main">イメージの、その先へ</span>
-    </h1>
-  </div>
-</div>
-
-<!-- hidden second layer: slides up and covers the pinned hero -->
-<section class="hero-overlay">
-  <img class="hero-overlay__art" src="images/s-mainwp2_img.svg" alt="">
-  <div class="hero-overlay__inner">
-    <h2>提案力で期待に応える<br>ベストなモノづくりパートナー</h2>
-    <p>
-      モノづくりメーカーのニーズを丁寧に汲み取り、<br>
-      各種の技術や加工方法を組み合わせて新たな部品や製品を創り出す。<br>
-      興盛ネクサスは、「価値（Value）創造企業」として<br>
-      お客様の課題解決とともに社会へ貢献していきます。
-    </p>
-    <a class="hero-overlay__cta" href="#strengths">
-      <span>興盛ネクサスの<br>強みと機能</span>
-      <span class="arrow">→</span>
-    </a>
+<!-- Page hero -->
+<section class="page-hero">
+  <div class="page-hero__inner">
+    <p class="page-hero__sub">ABOUT US</p>
+    <h1>会社紹介</h1>
   </div>
 </section>
-</div>
 
-<!-- 3. Company overview -->
-<section class="section" id="about">
+<nav class="breadcrumb" aria-label="パンくずリスト">
   <div class="section__inner">
-    <p class="section__label">COMPANY</p>
-    <h2 class="section__title">会社紹介</h2>
+    <ol>
+      <li><a href="../">ホーム</a></li>
+      <li>会社紹介</li>
+    </ol>
+  </div>
+</nav>
+
+<!-- About: unified company introduction -->
+<section class="section" id="company">
+  <div class="section__inner">
     <div class="overview__grid">
       <div class="overview__text">
         <p>
-          興盛ネクサス株式会社は、三重県桑名市を拠点とする精密機械加工メーカーです。
-          CNCマシニングセンタによる精密部品加工と、機械装置用治具の設計・製作を手がけ、
-          アルミ・樹脂の切削加工を得意としています。
-          「品質第一・納期厳守」を信条に、試作から量産まで、お客様の期待を超えるモノづくりでお応えします。
+          興盛ネクサス株式会社は、三重県桑名市を拠点に、CNCマシニングセンタによる精密機械加工と、
+          機械装置用治具の設計・製作を手がけるモノづくり企業です。
+          アルミ・樹脂の切削加工を得意とし、試作から量産まで柔軟に対応しています。<br><br>
+          「つなぐ・つたえる・つくりだす」を合言葉に、お客様の図面の先にある想いまで汲み取り、
+          高品質・短納期でお応えすることをお約束します。
         </p>
-        <a class="btn-more" href="about-us/">会社紹介を詳しく見る</a>
       </div>
       <figure class="overview__photo">
-        <img src="images/04.jpeg" alt="興盛ネクサスの工場内観">
+        <img src="../images/04.jpeg" alt="興盛ネクサスの工場内観">
       </figure>
     </div>
+
+    <table class="profile-table about-profile">
+      <tr>
+        <th>会社名</th>
+        <td>興盛ネクサス株式会社</td>
+      </tr>
+      <tr>
+        <th>所在地</th>
+        <td>〒511-0838　三重県桑名市大字和泉283-2</td>
+      </tr>
+      <tr>
+        <th>TEL</th>
+        <td><a href="tel:0594-42-5661">0594-42-5661</a></td>
+      </tr>
+      <tr>
+        <th>FAX</th>
+        <td>0594-42-5661</td>
+      </tr>
+      <tr>
+        <th>事業内容</th>
+        <td>
+          CNCマシニングセンタによる精密機械加工<br>
+          機械装置用治具の設計・製作<br>
+          アルミ・樹脂の切削加工
+        </td>
+      </tr>
+    </table>
   </div>
 </section>
 
-<!-- 4. Strengths -->
-<section class="section section--gray" id="strengths">
+<!-- History timeline -->
+<section class="section section--gray" id="history">
   <div class="section__inner">
-    <p class="section__label">STRENGTHS</p>
-    <h2 class="section__title">私たちの強み</h2>
-    <div class="strengths__grid">
-      <div class="strength-card">
-        <div class="strength-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-            <circle cx="12" cy="12" r="9"/>
-            <circle cx="12" cy="12" r="4.5"/>
-            <circle cx="12" cy="12" r="0.8" fill="currentColor"/>
-            <line x1="12" y1="1" x2="12" y2="5"/>
-            <line x1="12" y1="19" x2="12" y2="23"/>
-            <line x1="1" y1="12" x2="5" y2="12"/>
-            <line x1="19" y1="12" x2="23" y2="12"/>
-          </svg>
+    <p class="section__label">HISTORY</p>
+    <h2 class="section__title">沿革</h2>
+    <div class="timeline">
+      <div class="timeline__item">
+        <div class="timeline__year">2024</div>
+        <div class="timeline__body">
+          <h3>会社設立</h3>
+          <p>三重県桑名市にて創業。機械加工の受託からスタートしました。</p>
         </div>
-        <h3>高精度加工</h3>
-        <p>
-          公差<strong>±0.005mm〜±0.01mm</strong>の高精度加工に対応。恒温環境での仕上げ・三次元測定機による全数検査で、ミクロン単位の品質を安定して実現します。
-        </p>
       </div>
-      <div class="strength-card">
-        <div class="strength-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M3 21l6-1.5L20.5 8a2.1 2.1 0 0 0-3-3L6 16.5 4.5 21z"/>
-            <path d="M14.5 6.5l3 3"/>
-            <path d="M3 8V4.5A1.5 1.5 0 0 1 4.5 3H8"/>
-          </svg>
+      <div class="timeline__item">
+        <div class="timeline__year">2025</div>
+        <div class="timeline__body">
+          <h3>CNCマシニングセンタ導入</h3>
+          <p>精密機械加工事業を本格化。アルミ・樹脂加工の受注を拡大しました。</p>
         </div>
-        <h3>治具設計力</h3>
-        <p>
-          経験豊富なエンジニアが図面の意図まで読み解き、<strong>段取り時間を短縮する治具の最適化提案</strong>を含めて、設計から一貫対応いたします。
-        </p>
       </div>
-      <div class="strength-card">
-        <div class="strength-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M1 8h13v9H1z"/>
-            <path d="M14 11h4l3 3v3h-7z"/>
-            <circle cx="5.5" cy="19" r="1.8"/>
-            <circle cx="17.5" cy="19" r="1.8"/>
-            <path d="M4 5.5h6M2 3h6"/>
-          </svg>
+      <div class="timeline__item">
+        <div class="timeline__year">2026</div>
+        <div class="timeline__body">
+          <h3>治具設計・製作部門を発足</h3>
+          <p>設計から製作までの一貫対応体制を構築。装置メーカー様との取引を開始しました。</p>
         </div>
-        <h3>納期とコスト</h3>
-        <p>
-          お見積りは最短即日回答。最適な加工方法のご提案によるコスト低減と、<strong>納期遵守率100%</strong>の生産管理体制で、安心してお任せいただけます。
-        </p>
+      </div>
+      <div class="timeline__item">
+        <div class="timeline__year">現在</div>
+        <div class="timeline__body">
+          <h3>「価値創造企業」として</h3>
+          <p>お客様の期待を超えるモノづくりを目指し、設備・人材への投資を続けています。</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 5. Works -->
-<section class="section" id="works">
+<!-- Vision -->
+<section class="section" id="vision">
   <div class="section__inner">
-    <p class="section__label">PRODUCTS</p>
-    <h2 class="section__title">製品紹介</h2>
-    <div class="slider">
-      <button class="slider__nav" id="worksPrev" aria-label="前へ" disabled>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <polyline points="15,4 7,12 15,20"/>
+    <p class="section__label">VISION</p>
+    <h2 class="section__title">ビジョン</h2>
+    <p class="vision__statement">イメージの、その先へ。</p>
+    <p class="vision__text">
+      お客様が思い描く「こうしたい」を、期待を超えるカタチにして届ける——
+      それが私たちの存在意義です。一つひとつの加工に真摯に向き合い、
+      技術と提案力を磨き続けることで、地域とともに成長し、
+      モノづくりの未来をつなぐ企業を目指します。
+    </p>
+  </div>
+</section>
+
+<!-- Quality commitment -->
+<section class="section section--gray" id="quality">
+  <div class="section__inner">
+    <p class="section__label">QUALITY</p>
+    <h2 class="section__title">品質への取り組み</h2>
+    <div class="quality__list">
+      <div class="quality-item">
+        <svg class="quality-item__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M8 12.5l2.6 2.6L16 9.5"/>
         </svg>
-      </button>
-      <div class="slider__viewport" id="worksViewport">
-        <ul class="slider__track">
-      <li class="work-card">
-        <figure><img src="images/01.jpeg" alt="加工用治具"></figure>
-        <span class="work-card__tag">加工用治具</span>
-        <h3>マシニング用クランプ治具</h3>
-        <dl>
-          <div><dt>材質</dt><dd>S45C（焼入れ処理）</dd></div>
-          <div><dt>精度</dt><dd>±0.01mm</dd></div>
-        </dl>
-      </li>
-      <li class="work-card">
-        <figure><img src="images/02.jpeg" alt="検査治具"></figure>
-        <span class="work-card__tag">検査治具</span>
-        <h3>寸法検査用ゲージ治具</h3>
-        <dl>
-          <div><dt>材質</dt><dd>SUS304</dd></div>
-          <div><dt>精度</dt><dd>±0.005mm</dd></div>
-        </dl>
-      </li>
-      <li class="work-card">
-        <figure><img src="images/03.jpeg" alt="精密機械部品"></figure>
-        <span class="work-card__tag">精密機械部品</span>
-        <h3>搬送装置用シャフト</h3>
-        <dl>
-          <div><dt>材質</dt><dd>SUS303</dd></div>
-          <div><dt>精度</dt><dd>±0.008mm</dd></div>
-        </dl>
-      </li>
-      <li class="work-card">
-        <figure><img src="images/04.jpeg" alt="加工用治具"></figure>
-        <span class="work-card__tag">加工用治具</span>
-        <h3>溶接位置決め治具</h3>
-        <dl>
-          <div><dt>材質</dt><dd>SS400</dd></div>
-          <div><dt>精度</dt><dd>±0.02mm</dd></div>
-        </dl>
-      </li>
-      <li class="work-card">
-        <figure><img src="images/01.jpeg" alt="検査治具"></figure>
-        <span class="work-card__tag">検査治具</span>
-        <h3>組立確認用チェック治具</h3>
-        <dl>
-          <div><dt>材質</dt><dd>A5052＋SUS304</dd></div>
-          <div><dt>精度</dt><dd>±0.01mm</dd></div>
-        </dl>
-      </li>
-      <li class="work-card">
-        <figure><img src="images/02.jpeg" alt="精密機械部品"></figure>
-        <span class="work-card__tag">精密機械部品</span>
-        <h3>金型用コアピン</h3>
-        <dl>
-          <div><dt>材質</dt><dd>SKD61</dd></div>
-          <div><dt>精度</dt><dd>±0.005mm</dd></div>
-        </dl>
-      </li>
-        </ul>
+        <div>
+          <h3>出荷前の全数検査</h3>
+          <p>寸法・外観を全品チェックし、検査記録を残したうえで出荷します。</p>
+        </div>
       </div>
-      <button class="slider__nav" id="worksNext" aria-label="次へ">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <polyline points="9,4 17,12 9,20"/>
+      <div class="quality-item">
+        <svg class="quality-item__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M8 12.5l2.6 2.6L16 9.5"/>
         </svg>
-      </button>
-    </div>
-    <div class="section__foot">
-      <a class="btn-more" href="products/">製品一覧をすべて見る</a>
-    </div>
-  </div>
-</section>
-
-<!-- 6. Equipment -->
-<section class="section section--gray" id="equipment">
-  <div class="section__inner">
-    <p class="section__label">EQUIPMENT</p>
-    <h2 class="section__title">主要設備</h2>
-    <div class="equipment__grid">
-      <div class="equip-card">
-        <figure><img src="images/01.jpeg" alt="立形マシニングセンタ"></figure>
-        <div class="equip-card__body">
-          <p class="equip-card__maker">MAZAK（日本）</p>
-          <h3>立形マシニングセンタ<br>VCN-530C</h3>
-          <table>
-            <tr><th>X-Y-Z</th><td>1,050 × 530 × 510 mm</td></tr>
-            <tr><th>主軸回転</th><td>12,000 min⁻¹</td></tr>
-          </table>
-        </div>
-      </div>
-      <div class="equip-card">
-        <figure><img src="images/02.jpeg" alt="ワイヤ放電加工機"></figure>
-        <div class="equip-card__body">
-          <p class="equip-card__maker">SODICK（日本）</p>
-          <h3>ワイヤ放電加工機<br>AL400G</h3>
-          <table>
-            <tr><th>X-Y-Z</th><td>400 × 300 × 250 mm</td></tr>
-            <tr><th>最良面粗さ</th><td>Rz 1.0 µm</td></tr>
-          </table>
-        </div>
-      </div>
-      <div class="equip-card">
-        <figure><img src="images/03.jpeg" alt="CNC旋盤"></figure>
-        <div class="equip-card__body">
-          <p class="equip-card__maker">OKUMA（日本）</p>
-          <h3>CNC旋盤<br>GENOS L250-e</h3>
-          <table>
-            <tr><th>最大加工径</th><td>φ250 mm</td></tr>
-            <tr><th>加工長さ</th><td>390 mm</td></tr>
-          </table>
-        </div>
-      </div>
-      <div class="equip-card">
-        <figure><img src="images/04.jpeg" alt="三次元測定機"></figure>
-        <div class="equip-card__body">
-          <p class="equip-card__maker">MITUTOYO（日本）</p>
-          <h3>CNC三次元測定機<br>CRYSTA-Apex S 9106</h3>
-          <table>
-            <tr><th>X-Y-Z</th><td>900 × 1,000 × 600 mm</td></tr>
-            <tr><th>最大許容誤差</th><td>(1.7+3L/1000) µm</td></tr>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="section__foot">
-      <a class="btn-more" href="our-equipments/">設備一覧をすべて見る</a>
-    </div>
-  </div>
-</section>
-
-<!-- 7. Flow -->
-<section class="section" id="flow">
-  <div class="section__inner">
-    <p class="section__label">FLOW</p>
-    <h2 class="section__title">ご利用の流れ</h2>
-    <div class="flow__steps">
-      <div class="flow-step">
-        <div class="flow-step__num" aria-hidden="true"></div>
         <div>
-          <h3>図面・ご要望の送付</h3>
-          <p>お問い合わせフォームより図面（PDF・STEP・DXF）をお送りください。ポンチ絵からのご相談も歓迎です。</p>
+          <h3>測定機器による精度保証</h3>
+          <p>測定機器を計画的に校正・管理し、図面公差を確実に保証します。</p>
         </div>
       </div>
-      <div class="flow-step">
-        <div class="flow-step__num" aria-hidden="true"></div>
+      <div class="quality-item">
+        <svg class="quality-item__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M8 12.5l2.6 2.6L16 9.5"/>
+        </svg>
         <div>
-          <h3>ご相談・お見積り</h3>
-          <p>内容を確認のうえ、最短即日〜2営業日でお見積りをご提示。仕様のご相談は日本語で対応します。</p>
+          <h3>5S・改善活動の徹底</h3>
+          <p>整理・整頓の行き届いた現場づくりで、不良の発生を未然に防ぎます。</p>
         </div>
       </div>
-      <div class="flow-step">
-        <div class="flow-step__num" aria-hidden="true"></div>
+      <div class="quality-item">
+        <svg class="quality-item__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M8 12.5l2.6 2.6L16 9.5"/>
+        </svg>
         <div>
-          <h3>設計・ご承認</h3>
-          <p>治具設計の場合は3Dモデル・組図をご提出し、お客様のご承認をいただいてから製作へ進みます。</p>
-        </div>
-      </div>
-      <div class="flow-step">
-        <div class="flow-step__num" aria-hidden="true"></div>
-        <div>
-          <h3>加工・品質検査</h3>
-          <p>社内一貫体制で加工。三次元測定機による検査成績書を全品に添付し、品質を保証します。</p>
-        </div>
-      </div>
-      <div class="flow-step">
-        <div class="flow-step__num" aria-hidden="true"></div>
-        <div>
-          <h3>納品</h3>
-          <p>防錆・梱包にも配慮し、ご指定の場所へ納品。お急ぎの案件は直接配送のご相談も承ります。</p>
+          <h3>納期遵守の生産管理</h3>
+          <p>受注から出荷までを一元管理し、お約束した納期を必ず守ります。</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 8. News -->
-<section class="section section--gray" id="news">
-  <div class="section__inner">
-    <p class="section__label">NEWS</p>
-    <h2 class="section__title">お知らせ</h2>
-    <ul class="news__list">
-      <li>
-        <a href="news/">
-          <span class="news__date">2026.07.10</span>
-          <span class="news__cat">設備</span>
-          <span class="news__title">立形マシニングセンタ（MAZAK VCN-530C）を新規導入しました</span>
-        </a>
-      </li>
-      <li>
-        <a href="news/">
-          <span class="news__date">2026.06.15</span>
-          <span class="news__cat">取り組み</span>
-          <span class="news__title">全社員参加の5S活動・品質研修を実施しました</span>
-        </a>
-      </li>
-      <li>
-        <a href="news/">
-          <span class="news__date">2026.05.28</span>
-          <span class="news__cat">お知らせ</span>
-          <span class="news__title">コーポレートサイトを公開しました</span>
-        </a>
-      </li>
-    </ul>
-    <div class="section__foot">
-      <a class="btn-more" href="news/">お知らせ一覧へ</a>
-    </div>
-  </div>
+<!-- Bottom CTA -->
+<section class="about-cta">
+  <p class="about-cta__sub">つなぐ・つたえる・つくりだす</p>
+  <p class="about-cta__slogan">イメージの、その先へ。</p>
+  <a class="about-cta__btn" href="../contact-us/">お問い合わせはこちら</a>
 </section>
 
 <!-- Footer -->
@@ -1745,17 +1925,17 @@
         FAX：0594-42-5661
       </address>
       <div class="footer__line">
-        <img src="images/line.jpeg" alt="LINE友だち追加QRコード">
+        <img src="../images/line.jpeg" alt="LINE友だち追加QRコード">
         <p>お急ぎの方はLINEで<br>お問い合わせください</p>
       </div>
     </div>
     <nav class="footer__nav" aria-label="フッターナビゲーション">
       <ul>
-        <li><a href="about-us/">会社紹介</a></li>
-        <li><a href="products/">製品紹介</a></li>
-        <li><a href="our-equipments/">主要設備</a></li>
-        <li><a href="news/">お知らせ</a></li>
-        <li><a href="contact-us/">お問い合わせ</a></li>
+        <li><a href="../about-us/">会社紹介</a></li>
+        <li><a href="../products/">製品紹介</a></li>
+        <li><a href="../our-equipments/">主要設備</a></li>
+        <li><a href="../news/">お知らせ</a></li>
+        <li><a href="../contact-us/">お問い合わせ</a></li>
       </ul>
     </nav>
     <div class="footer__map">
