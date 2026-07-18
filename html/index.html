@@ -13,6 +13,14 @@
     --header-height: 140px;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
+  section[id] {
+    scroll-margin-top: calc(var(--header-height) + 10px);
+  }
+
   * {
     margin: 0;
     padding: 0;
@@ -314,56 +322,13 @@
     text-align: left;
   }
 
-  .drawer__item .icon-plus {
-    position: relative;
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-  }
 
-  .drawer__item .icon-plus::before,
-  .drawer__item .icon-plus::after {
-    content: "";
-    position: absolute;
-    background: #1a1a1a;
-    transition: transform .2s;
-  }
 
-  .drawer__item .icon-plus::before {
-    left: 0;
-    right: 0;
-    top: 50%;
-    height: 1.5px;
-    transform: translateY(-50%);
-  }
 
-  .drawer__item .icon-plus::after {
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 1.5px;
-    transform: translateX(-50%);
-  }
 
-  li.is-expanded .drawer__item .icon-plus::after {
-    transform: translateX(-50%) scaleY(0);
-  }
 
-  .drawer__sub {
-    display: none;
-    padding: 0 24px 18px;
-  }
 
-  li.is-expanded .drawer__sub {
-    display: block;
-  }
 
-  .drawer__sub a {
-    display: block;
-    padding: 14px 0;
-    font-size: 16px;
-    color: #444;
-  }
 
   /* ===== Hero: full-screen Ken Burns image loop =====
      The hero sticks under the fixed menu while .hero-overlay (next sibling)
@@ -544,33 +509,14 @@
     pointer-events: none;
   }
 
-  /* ===== PICK UP slider ===== */
-  .pickup {
-    background: #eef0f2;
-    padding: 90px 0 100px;
-  }
-
-  .pickup__inner {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 40px;
-  }
-
-  .pickup__title {
-    font-size: 26px;
-    font-weight: 500;
-    letter-spacing: .08em;
-    color: #1a1a1a;
-    margin-bottom: 44px;
-  }
-
-  .pickup__slider {
+  /* ===== card slider (Our Products) ===== */
+  .slider {
     display: flex;
     align-items: center;
     gap: 18px;
   }
 
-  .pickup__viewport {
+  .slider__viewport {
     flex: 1;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -578,51 +524,23 @@
     scrollbar-width: none; /* Firefox */
   }
 
-  .pickup__viewport::-webkit-scrollbar {
+  .slider__viewport::-webkit-scrollbar {
     display: none;
   }
 
-  .pickup__track {
+  .slider__track {
     list-style: none;
     display: flex;
     gap: 32px;
   }
 
-  .pickup__item {
-    flex: 0 0 calc((100% - 3 * 32px) / 4);
+  .slider__track > li {
+    flex: 0 0 calc((100% - 2 * 32px) / 3); /* 3 per view */
     scroll-snap-align: start;
   }
 
-  .pickup__item a {
-    display: block;
-  }
-
-  .pickup__item figure {
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    margin-bottom: 18px;
-    background: #fff;
-  }
-
-  .pickup__item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform .4s ease;
-  }
-
-  .pickup__item a:hover img {
-    transform: scale(1.06);
-  }
-
-  .pickup__item p {
-    font-size: 15px;
-    line-height: 1.8;
-    color: #333;
-  }
-
   /* prev / next buttons at both ends */
-  .pickup__nav {
+  .slider__nav {
     flex-shrink: 0;
     width: 48px;
     height: 48px;
@@ -636,46 +554,38 @@
     transition: background .2s, color .2s, opacity .2s;
   }
 
-  .pickup__nav svg {
+  .slider__nav svg {
     width: 18px;
     height: 18px;
   }
 
-  .pickup__nav:hover:not(:disabled) {
+  .slider__nav:hover:not(:disabled) {
     background: var(--primary);
     color: #fff;
   }
 
-  .pickup__nav:disabled {
+  .slider__nav:disabled {
     opacity: .35;
     cursor: default;
   }
 
   @media (max-width: 1100px) {
-    .pickup {
-      padding: 60px 0 70px;
-    }
-
-    .pickup__inner {
-      padding: 0 16px;
-    }
-
-    .pickup__item {
+    .slider__track > li {
       flex: 0 0 calc((100% - 32px) / 2); /* 2 per view */
     }
   }
 
   @media (max-width: 640px) {
-    .pickup__slider {
+    .slider {
       gap: 10px;
     }
 
-    .pickup__nav {
+    .slider__nav {
       width: 40px;
       height: 40px;
     }
 
-    .pickup__item {
+    .slider__track > li {
       flex: 0 0 100%; /* 1 per view */
     }
   }
@@ -813,11 +723,8 @@
     color: var(--primary-dark);
   }
 
-  /* ===== 5. Works (製作実績) ===== */
-  .works__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 36px 32px;
+  /* ===== 5. Our Products ===== */
+  .works .slider {
     margin-bottom: 28px;
   }
 
@@ -1146,47 +1053,11 @@
     resize: vertical;
   }
 
-  /* drawing-file attach */
-  .file-attach {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
 
-  .file-attach input[type="file"] {
-    display: none;
-  }
 
-  .file-attach__btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    border: 1px dashed var(--primary);
-    color: var(--primary);
-    background: #f2f7fd;
-    padding: 12px 22px;
-    font-size: 14px;
-    font-weight: 700;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background .2s;
-  }
 
-  .file-attach__btn:hover {
-    background: #e3eefb;
-  }
 
-  .file-attach__name {
-    font-size: 13.5px;
-    color: #555;
-  }
 
-  .file-attach__hint {
-    width: 100%;
-    font-size: 12.5px;
-    color: #888;
-  }
 
   .contact__submit {
     display: block;
@@ -1292,8 +1163,7 @@
       gap: 32px;
     }
 
-    .strengths__grid,
-    .works__grid {
+    .strengths__grid {
       grid-template-columns: repeat(2, 1fr);
       gap: 24px 20px;
     }
@@ -1344,7 +1214,6 @@
 
   @media (max-width: 640px) {
     .strengths__grid,
-    .works__grid,
     .equipment__grid {
       grid-template-columns: 1fr;
     }
@@ -1454,11 +1323,12 @@
 
       <nav class="gnav" aria-label="グローバルナビゲーション">
         <ul>
-          <li><a href="#">製品・サービス</a></li>
-          <li><a href="#">会社情報</a></li>
-          <li><a href="#">サステナビリティ</a></li>
-          <li><a href="#">採用情報</a></li>
-          <li><a href="#">お問い合わせ</a></li>
+          <li><a href="#about">会社紹介</a></li>
+          <li><a href="#works">製品紹介</a></li>
+          <li><a href="#equipment">主要設備</a></li>
+          <li><a href="#flow">ご利用の流れ</a></li>
+          <li><a href="#news">お知らせ</a></li>
+          <li><a href="#contact">お問い合わせ</a></li>
         </ul>
       </nav>
     </div>
@@ -1488,52 +1358,12 @@
 
   <nav class="drawer__nav" aria-label="モバイルナビゲーション">
     <ul>
-      <li>
-        <button class="drawer__item" aria-expanded="false">
-          製品・サービス
-          <span class="icon-plus" aria-hidden="true"></span>
-        </button>
-        <ul class="drawer__sub">
-          <li><a href="#">製品・サービスTOP</a></li>
-          <li><a href="#">事業内容</a></li>
-          <li><a href="#">品質保証体制</a></li>
-        </ul>
-      </li>
-      <li>
-        <button class="drawer__item" aria-expanded="false">
-          会社情報
-          <span class="icon-plus" aria-hidden="true"></span>
-        </button>
-        <ul class="drawer__sub">
-          <li><a href="#">会社概要</a></li>
-          <li><a href="#">代表挨拶</a></li>
-          <li><a href="#">沿革</a></li>
-          <li><a href="#">アクセス</a></li>
-        </ul>
-      </li>
-      <li>
-        <button class="drawer__item" aria-expanded="false">
-          サステナビリティ
-          <span class="icon-plus" aria-hidden="true"></span>
-        </button>
-        <ul class="drawer__sub">
-          <li><a href="#">環境への取り組み</a></li>
-          <li><a href="#">社会貢献</a></li>
-        </ul>
-      </li>
-      <li>
-        <button class="drawer__item" aria-expanded="false">
-          採用情報
-          <span class="icon-plus" aria-hidden="true"></span>
-        </button>
-        <ul class="drawer__sub">
-          <li><a href="#">新卒採用</a></li>
-          <li><a href="#">キャリア採用</a></li>
-        </ul>
-      </li>
-      <li>
-        <a class="drawer__item" href="#">お問い合わせ</a>
-      </li>
+      <li><a class="drawer__item" href="#about">会社紹介</a></li>
+      <li><a class="drawer__item" href="#works">製品紹介</a></li>
+      <li><a class="drawer__item" href="#equipment">主要設備</a></li>
+      <li><a class="drawer__item" href="#flow">ご利用の流れ</a></li>
+      <li><a class="drawer__item" href="#news">お知らせ</a></li>
+      <li><a class="drawer__item" href="#contact">お問い合わせ</a></li>
     </ul>
   </nav>
 </div>
@@ -1575,79 +1405,6 @@
   </div>
 </section>
 </div>
-
-<!-- PICK UP -->
-<section class="pickup">
-  <div class="pickup__inner">
-    <h2 class="pickup__title">PICK UP</h2>
-    <div class="pickup__slider">
-      <button class="pickup__nav" id="pickupPrev" aria-label="前へ" disabled>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <polyline points="15,4 7,12 15,20"/>
-        </svg>
-      </button>
-
-      <div class="pickup__viewport" id="pickupViewport">
-        <ul class="pickup__track">
-          <li class="pickup__item">
-            <a href="#">
-              <figure><img src="images/01.jpeg" alt=""></figure>
-              <p>興盛ネクサスは2026年8月に設立80周年を迎えます</p>
-            </a>
-          </li>
-          <li class="pickup__item">
-            <a href="#">
-              <figure><img src="images/02.jpeg" alt=""></figure>
-              <p>新卒採用 説明会受付中！</p>
-            </a>
-          </li>
-          <li class="pickup__item">
-            <a href="#">
-              <figure><img src="images/03.jpeg" alt=""></figure>
-              <p>最前線で活躍している当社の営業社員が、ブログ形式で”現場の今”を紹介しています</p>
-            </a>
-          </li>
-          <li class="pickup__item">
-            <a href="#">
-              <figure><img src="images/04.jpeg" alt=""></figure>
-              <p>興盛ネクサス「早口言葉」篇　各種媒体で公開しています</p>
-            </a>
-          </li>
-          <li class="pickup__item">
-            <a href="#">
-              <figure><img src="images/01.jpeg" alt=""></figure>
-              <p>興盛ネクサスは2026年8月に設立80周年を迎えます</p>
-            </a>
-          </li>
-          <li class="pickup__item">
-            <a href="#">
-              <figure><img src="images/02.jpeg" alt=""></figure>
-              <p>新卒採用 説明会受付中！</p>
-            </a>
-          </li>
-          <li class="pickup__item">
-            <a href="#">
-              <figure><img src="images/03.jpeg" alt=""></figure>
-              <p>最前線で活躍している当社の営業社員が、ブログ形式で”現場の今”を紹介しています</p>
-            </a>
-          </li>
-          <li class="pickup__item">
-            <a href="#">
-              <figure><img src="images/04.jpeg" alt=""></figure>
-              <p>興盛ネクサス「早口言葉」篇　各種媒体で公開しています</p>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <button class="pickup__nav" id="pickupNext" aria-label="次へ">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <polyline points="9,4 17,12 9,20"/>
-        </svg>
-      </button>
-    </div>
-  </div>
-</section>
 
 <!-- 3. Company overview -->
 <section class="section" id="about">
@@ -1729,10 +1486,17 @@
 <!-- 5. Works -->
 <section class="section" id="works">
   <div class="section__inner">
-    <p class="section__label">WORKS</p>
-    <h2 class="section__title">製作実績</h2>
-    <div class="works__grid">
-      <div class="work-card">
+    <p class="section__label">PRODUCTS</p>
+    <h2 class="section__title">製品紹介</h2>
+    <div class="slider">
+      <button class="slider__nav" id="worksPrev" aria-label="前へ" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15,4 7,12 15,20"/>
+        </svg>
+      </button>
+      <div class="slider__viewport" id="worksViewport">
+        <ul class="slider__track">
+      <li class="work-card">
         <figure><img src="images/01.jpeg" alt="加工用治具"></figure>
         <span class="work-card__tag">加工用治具</span>
         <h3>マシニング用クランプ治具</h3>
@@ -1740,8 +1504,8 @@
           <div><dt>材質</dt><dd>S45C（焼入れ処理）</dd></div>
           <div><dt>精度</dt><dd>±0.01mm</dd></div>
         </dl>
-      </div>
-      <div class="work-card is-masked">
+      </li>
+      <li class="work-card is-masked">
         <figure><img src="images/02.jpeg" alt="検査治具"></figure>
         <span class="work-card__tag">検査治具</span>
         <h3>寸法検査用ゲージ治具</h3>
@@ -1749,8 +1513,8 @@
           <div><dt>材質</dt><dd>SUS304</dd></div>
           <div><dt>精度</dt><dd>±0.005mm</dd></div>
         </dl>
-      </div>
-      <div class="work-card">
+      </li>
+      <li class="work-card">
         <figure><img src="images/03.jpeg" alt="精密機械部品"></figure>
         <span class="work-card__tag">精密機械部品</span>
         <h3>搬送装置用シャフト</h3>
@@ -1758,8 +1522,8 @@
           <div><dt>材質</dt><dd>SUS303</dd></div>
           <div><dt>精度</dt><dd>±0.008mm</dd></div>
         </dl>
-      </div>
-      <div class="work-card">
+      </li>
+      <li class="work-card">
         <figure><img src="images/04.jpeg" alt="加工用治具"></figure>
         <span class="work-card__tag">加工用治具</span>
         <h3>溶接位置決め治具</h3>
@@ -1767,8 +1531,8 @@
           <div><dt>材質</dt><dd>SS400</dd></div>
           <div><dt>精度</dt><dd>±0.02mm</dd></div>
         </dl>
-      </div>
-      <div class="work-card is-masked">
+      </li>
+      <li class="work-card is-masked">
         <figure><img src="images/01.jpeg" alt="検査治具"></figure>
         <span class="work-card__tag">検査治具</span>
         <h3>組立確認用チェック治具</h3>
@@ -1776,8 +1540,8 @@
           <div><dt>材質</dt><dd>A5052＋SUS304</dd></div>
           <div><dt>精度</dt><dd>±0.01mm</dd></div>
         </dl>
-      </div>
-      <div class="work-card">
+      </li>
+      <li class="work-card">
         <figure><img src="images/02.jpeg" alt="精密機械部品"></figure>
         <span class="work-card__tag">精密機械部品</span>
         <h3>金型用コアピン</h3>
@@ -1785,11 +1549,18 @@
           <div><dt>材質</dt><dd>SKD61</dd></div>
           <div><dt>精度</dt><dd>±0.005mm</dd></div>
         </dl>
+      </li>
+        </ul>
       </div>
+      <button class="slider__nav" id="worksNext" aria-label="次へ">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="9,4 17,12 9,20"/>
+        </svg>
+      </button>
     </div>
     <p class="works__note">※機密保持のため、一部の製品画像は加工・マスキング処理を施しています。</p>
     <div class="section__foot">
-      <a class="btn-more" href="#">製作実績をすべて見る</a>
+      <a class="btn-more" href="#">製品一覧をすべて見る</a>
     </div>
   </div>
 </section>
@@ -1956,20 +1727,6 @@
         <label for="f-message">お問い合わせ内容<span class="req">必須</span></label>
         <textarea id="f-message" name="message" required></textarea>
       </div>
-      <div class="form-row">
-        <label>図面ファイル添付</label>
-        <div class="file-attach">
-          <label class="file-attach__btn" for="f-file">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
-              <path d="M21 12.5l-8.2 8.2a5.4 5.4 0 0 1-7.6-7.6l8.8-8.8a3.6 3.6 0 0 1 5.1 5.1l-8.8 8.8a1.8 1.8 0 0 1-2.5-2.5l8.1-8.1"/>
-            </svg>
-            ファイルを選択
-          </label>
-          <input type="file" id="f-file" name="drawing" accept=".pdf,.step,.stp,.dxf,.dwg,.igs,.iges,.zip">
-          <span class="file-attach__name" id="fileName">選択されていません</span>
-          <span class="file-attach__hint">対応形式：PDF / STEP / DXF / DWG / IGES / ZIP（最大20MB）</span>
-        </div>
-      </div>
       <button type="submit" class="contact__submit">送信する</button>
     </form>
   </div>
@@ -1991,7 +1748,7 @@
       <ul>
         <li><a href="#about">会社紹介</a></li>
         <li><a href="#strengths">私たちの強み</a></li>
-        <li><a href="#works">製作実績</a></li>
+        <li><a href="#works">製品紹介</a></li>
         <li><a href="#equipment">主要設備</a></li>
         <li><a href="#flow">ご利用の流れ</a></li>
         <li><a href="#news">お知らせ</a></li>
@@ -2031,45 +1788,33 @@
 
   menuToggle.addEventListener('click', () => setDrawer(!drawer.classList.contains('is-open')));
 
-  document.querySelectorAll('.drawer__nav button.drawer__item').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const li = btn.parentElement;
-      const expanded = li.classList.toggle('is-expanded');
-      btn.setAttribute('aria-expanded', expanded);
-    });
+  // close the drawer first so the anchor jump can actually scroll the page
+  document.querySelectorAll('.drawer__nav a').forEach(link => {
+    link.addEventListener('click', () => setDrawer(false));
   });
 
-  // ---------- contact form: show attached drawing filename ----------
-  const fileInput = document.getElementById('f-file');
-  const fileNameEl = document.getElementById('fileName');
-  if (fileInput) {
-    fileInput.addEventListener('change', () => {
-      fileNameEl.textContent = fileInput.files.length ? fileInput.files[0].name : '選択されていません';
-    });
-  }
-
-  // ---------- PICK UP slider ----------
-  const pickupViewport = document.getElementById('pickupViewport');
-  const pickupPrev = document.getElementById('pickupPrev');
-  const pickupNext = document.getElementById('pickupNext');
-  if (pickupViewport) {
+  // ---------- Our Products slider ----------
+  const worksViewport = document.getElementById('worksViewport');
+  const worksPrev = document.getElementById('worksPrev');
+  const worksNext = document.getElementById('worksNext');
+  if (worksViewport) {
     const step = () => {
-      const item = pickupViewport.querySelector('.pickup__item');
-      const gap = parseFloat(getComputedStyle(pickupViewport.querySelector('.pickup__track')).gap) || 0;
+      const item = worksViewport.querySelector('.slider__track > li');
+      const gap = parseFloat(getComputedStyle(worksViewport.querySelector('.slider__track')).gap) || 0;
       return item.offsetWidth + gap;
     };
 
-    pickupPrev.addEventListener('click', () => pickupViewport.scrollBy({ left: -step(), behavior: 'smooth' }));
-    pickupNext.addEventListener('click', () => pickupViewport.scrollBy({ left: step(), behavior: 'smooth' }));
+    worksPrev.addEventListener('click', () => worksViewport.scrollBy({ left: -step(), behavior: 'smooth' }));
+    worksNext.addEventListener('click', () => worksViewport.scrollBy({ left: step(), behavior: 'smooth' }));
 
-    const updatePickupNav = () => {
-      const maxScroll = pickupViewport.scrollWidth - pickupViewport.clientWidth;
-      pickupPrev.disabled = pickupViewport.scrollLeft <= 1;
-      pickupNext.disabled = pickupViewport.scrollLeft >= maxScroll - 1;
+    const updateWorksNav = () => {
+      const maxScroll = worksViewport.scrollWidth - worksViewport.clientWidth;
+      worksPrev.disabled = worksViewport.scrollLeft <= 1;
+      worksNext.disabled = worksViewport.scrollLeft >= maxScroll - 1;
     };
-    pickupViewport.addEventListener('scroll', updatePickupNav, { passive: true });
-    window.addEventListener('resize', updatePickupNav);
-    updatePickupNav();
+    worksViewport.addEventListener('scroll', updateWorksNav, { passive: true });
+    window.addEventListener('resize', updateWorksNav);
+    updateWorksNav();
   }
 
   // ---------- ken burns hero loop (from ux.html) ----------
