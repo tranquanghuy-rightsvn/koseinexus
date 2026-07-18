@@ -1183,7 +1183,7 @@
   .page-hero {
     position: relative;
     height: 380px;
-    background: url('../images/header-2.png') center / cover no-repeat;
+    background: url('/images/header-2.png') center / cover no-repeat;
     display: flex;
     align-items: center;
     color: #fff;
@@ -1275,11 +1275,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform .5s ease;
-  }
-
-  .equip-row:hover .equip-row__media img {
-    transform: scale(1.04);
   }
 
   .equip-row__num {
@@ -1311,6 +1306,60 @@
     font-size: 15px;
     line-height: 2.1;
     color: #444;
+  }
+
+  /* clip the off-screen start position of the slide-fade images,
+     otherwise they widen the page and cause a horizontal scrollbar */
+  #equipment-list {
+    overflow-x: hidden;
+  }
+
+  /* slide-fade reveal on scroll: images fade in from the outer side —
+     left rows from the left, reversed rows from the right.
+     .fold-init is added by JS, so without JS images just show normally. */
+  .equip-row__media.fold-init {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: transform 1.4s cubic-bezier(.22, .9, .35, 1), opacity 1.2s ease;
+    will-change: transform, opacity;
+  }
+
+  .equip-row--rev .equip-row__media.fold-init {
+    transform: translateX(100px);
+  }
+
+  .equip-row__media.fold-init.is-inview,
+  .equip-row--rev .equip-row__media.fold-init.is-inview {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* text block: fade in from the opposite side of the image —
+     image comes from the left ⇒ text from the right, and vice versa */
+  .equip-row__body.fade-init {
+    opacity: 0;
+    transform: translateX(100px);
+    transition: transform 1.4s cubic-bezier(.22, .9, .35, 1), opacity 1.2s ease;
+    will-change: transform, opacity;
+  }
+
+  .equip-row--rev .equip-row__body.fade-init {
+    transform: translateX(-100px);
+  }
+
+  .equip-row__body.fade-init.is-inview,
+  .equip-row--rev .equip-row__body.fade-init.is-inview {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .equip-row__media.fold-init,
+    .equip-row__body.fade-init {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
 
   /* alternate direction: text | num | image */
@@ -1613,7 +1662,7 @@
 <section class="section" id="equipment-list">
   <div class="section__inner">
       <div class="equip-row">
-        <figure class="equip-row__media"><img src="../images/01.jpeg" alt="MAZAK（日本） 01"></figure>
+        <figure class="equip-row__media"><img src="/images/01.jpeg" alt="MAZAK（日本） 01"></figure>
         <div class="equip-row__num" aria-hidden="true">01</div>
         <div class="equip-row__body">
           <p class="maker">MAZAK（日本）</p>
@@ -1622,7 +1671,7 @@
         </div>
       </div>
       <div class="equip-row equip-row--rev">
-        <figure class="equip-row__media"><img src="../images/02.jpeg" alt="SODICK（日本） 02"></figure>
+        <figure class="equip-row__media"><img src="/images/02.jpeg" alt="SODICK（日本） 02"></figure>
         <div class="equip-row__num" aria-hidden="true">02</div>
         <div class="equip-row__body">
           <p class="maker">SODICK（日本）</p>
@@ -1631,7 +1680,7 @@
         </div>
       </div>
       <div class="equip-row">
-        <figure class="equip-row__media"><img src="../images/03.jpeg" alt="OKUMA（日本） 03"></figure>
+        <figure class="equip-row__media"><img src="/images/03.jpeg" alt="OKUMA（日本） 03"></figure>
         <div class="equip-row__num" aria-hidden="true">03</div>
         <div class="equip-row__body">
           <p class="maker">OKUMA（日本）</p>
@@ -1640,7 +1689,7 @@
         </div>
       </div>
       <div class="equip-row equip-row--rev">
-        <figure class="equip-row__media"><img src="../images/04.jpeg" alt="FANUC（日本） 04"></figure>
+        <figure class="equip-row__media"><img src="/images/04.jpeg" alt="FANUC（日本） 04"></figure>
         <div class="equip-row__num" aria-hidden="true">04</div>
         <div class="equip-row__body">
           <p class="maker">FANUC（日本）</p>
@@ -1649,7 +1698,7 @@
         </div>
       </div>
       <div class="equip-row">
-        <figure class="equip-row__media"><img src="../images/01.jpeg" alt="MITUTOYO（日本） 05"></figure>
+        <figure class="equip-row__media"><img src="/images/01.jpeg" alt="MITUTOYO（日本） 05"></figure>
         <div class="equip-row__num" aria-hidden="true">05</div>
         <div class="equip-row__body">
           <p class="maker">MITUTOYO（日本）</p>
@@ -1674,7 +1723,7 @@
         FAX：0594-42-5661
       </address>
       <div class="footer__line">
-        <img src="images/line.jpeg" alt="LINE友だち追加QRコード">
+        <img src="/images/line.jpeg" alt="LINE友だち追加QRコード">
         <p>お急ぎの方はLINEで<br>お問い合わせください</p>
       </div>
     </div>
@@ -1758,6 +1807,24 @@
       kbIndex = (kbIndex + 1) % kbSlides.length;
       kbSlides[kbIndex].classList.add('active');
     }, 5000);
+  }
+
+  // ---------- equipment reveal: images fold in, text fades down ----------
+  const foldMedia = document.querySelectorAll('.equip-row__media');
+  const fadeBodies = document.querySelectorAll('.equip-row__body');
+  if ((foldMedia.length || fadeBodies.length) && 'IntersectionObserver' in window) {
+    foldMedia.forEach(m => m.classList.add('fold-init'));
+    fadeBodies.forEach(b => b.classList.add('fade-init'));
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-inview');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+    foldMedia.forEach(m => revealObserver.observe(m));
+    fadeBodies.forEach(b => revealObserver.observe(b));
   }
 
   // ---------- logo gears (from ux.html) ----------
