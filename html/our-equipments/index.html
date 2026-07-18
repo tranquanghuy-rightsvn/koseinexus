@@ -1308,6 +1308,43 @@
     color: #444;
   }
 
+  /* row 5: no real photo of partner equipment — use an icon panel instead */
+  .equip-row__media--panel {
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(135deg, var(--primary-dark), #0d3160);
+    display: flex;
+    align-items: center;
+    padding: 28px;
+  }
+
+  .partner-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    width: 100%;
+  }
+
+  .partner-grid li {
+    background: rgba(255, 255, 255, .07);
+    border: 1px solid rgba(255, 255, 255, .18);
+    color: #fff;
+    padding: 24px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    font-size: 13.5px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .partner-grid svg {
+    width: 30px;
+    height: 30px;
+    color: #9ec4ee;
+  }
+
   /* clip the off-screen start position of the slide-fade images,
      otherwise they widen the page and cause a horizontal scrollbar */
   #equipment-list {
@@ -1662,48 +1699,48 @@
 <section class="section" id="equipment-list">
   <div class="section__inner">
       <div class="equip-row">
-        <figure class="equip-row__media"><img src="/images/01.jpeg" alt="MAZAK（日本） 01"></figure>
+        <figure class="equip-row__media"><img src="/images/equipment-1.jpeg" alt="高速マシニングセンタ ロボドリル α-T14iD"></figure>
         <div class="equip-row__num" aria-hidden="true">01</div>
         <div class="equip-row__body">
-          <p class="maker">MAZAK（日本）</p>
-          <h3>立形マシニングセンタ<br>VCN-530C</h3>
-          <p>高剛性フレームと高速主軸を備えた当社の主力機。治具部品から精密機械部品まで、ミクロン単位の切削加工を安定して担います。</p>
+          <p class="maker">FANUC（日本）</p>
+          <h3>高速マシニングセンタ<br>ロボドリル α-T14iD</h3>
+          <p>3D高速フライス加工の主力機。アルミ・樹脂・鉄・鋼・ステンレスの複雑形状を高速で削り出し、ツールマークのない最高レベルの面品位を実現します。</p>
         </div>
       </div>
       <div class="equip-row equip-row--rev">
-        <figure class="equip-row__media"><img src="/images/02.jpeg" alt="SODICK（日本） 02"></figure>
+        <figure class="equip-row__media"><img src="/images/equipment-3.jpeg" alt="彫刻機"></figure>
         <div class="equip-row__num" aria-hidden="true">02</div>
         <div class="equip-row__body">
-          <p class="maker">SODICK（日本）</p>
-          <h3>ワイヤ放電加工機<br>AL400G</h3>
-          <p>焼入れ後の硬材や複雑な輪郭形状の加工を得意とします。切削では難しい高精度な抜き形状も、放電加工で確実に仕上げます。</p>
+          <p class="maker">刻印・マーキング</p>
+          <h3>彫刻機</h3>
+          <p>ロゴ・シリアル番号・ポカヨケ表示の刻印を担当。治具の使いやすさとトレーサビリティを高める、仕上げの要となる設備です。</p>
         </div>
       </div>
       <div class="equip-row">
-        <figure class="equip-row__media"><img src="/images/03.jpeg" alt="OKUMA（日本） 03"></figure>
+        <figure class="equip-row__media"><img src="/images/equipment-2.jpeg" alt="サンドブラスト設備"></figure>
         <div class="equip-row__num" aria-hidden="true">03</div>
         <div class="equip-row__body">
-          <p class="maker">OKUMA（日本）</p>
-          <h3>CNC旋盤<br>GENOS L250-e</h3>
-          <p>シャフト・ピン・ブッシュなどの丸物加工を担当。優れた繰り返し精度で、小ロットから量産まで安定した品質を実現します。</p>
+          <p class="maker">表面処理・後加工</p>
+          <h3>サンドブラスト設備</h3>
+          <p>微細なバリを除去し、均一で美しい梨地面に仕上げます。アルマイト処理や塗装前の下地処理としても活躍します。</p>
         </div>
       </div>
       <div class="equip-row equip-row--rev">
-        <figure class="equip-row__media"><img src="/images/04.jpeg" alt="FANUC（日本） 04"></figure>
+        <figure class="equip-row__media"><img src="/images/04.jpeg" alt="精密測定器一式"></figure>
         <div class="equip-row__num" aria-hidden="true">04</div>
         <div class="equip-row__body">
-          <p class="maker">FANUC（日本）</p>
-          <h3>ロボドリル<br>α-T14iD</h3>
-          <p>小物部品の高速ドリリング・タッピングに対応。段取り替えの速さを活かし、短納期のご依頼を力強く支えます。</p>
+          <p class="maker">品質保証</p>
+          <h3>精密測定器一式</h3>
+          <p>ノギス・マイクロメータ・ハイトゲージ・ダイヤルゲージに加え、ピンゲージ・ブロックゲージを完備。工程内検査と治具組立の平面・平行出しを支えます。</p>
         </div>
       </div>
       <div class="equip-row">
-        <figure class="equip-row__media"><img src="/images/01.jpeg" alt="MITUTOYO（日本） 05"></figure>
+        <figure class="equip-row__media"><img src="/images/equipment-5.jpg" alt="TIG溶接機（パートナー設備の一例）"></figure>
         <div class="equip-row__num" aria-hidden="true">05</div>
         <div class="equip-row__body">
-          <p class="maker">MITUTOYO（日本）</p>
-          <h3>CNC三次元測定機<br>CRYSTA-Apex S 9106</h3>
-          <p>加工後の寸法検査を担う品質保証の要。全数検査と検査成績書の発行により、出荷品質に責任を持ちます。</p>
+          <p class="maker">日越パートナー網</p>
+          <h3>溶接・板金の大型設備群</h3>
+          <p>TIG／MIG／MAG溶接機、大型レーザー切断機、プレスブレーキ、CNCタレットパンチなど。戦略パートナーとの連携で、大型溶接構造や重量物加工にも対応します。（写真はTIG溶接機の一例）</p>
         </div>
       </div>
     <div class="section__foot" style="margin-top: 40px;">

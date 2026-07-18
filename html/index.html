@@ -471,12 +471,18 @@
     max-width: 720px;
   }
 
+  .hero-overlay__actions {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
   .hero-overlay__cta {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 24px;
-    width: 380px;
+    width: 300px;
     max-width: 100%;
     background: #fff;
     color: var(--primary);
@@ -494,6 +500,12 @@
   .hero-overlay__cta .arrow {
     font-size: 22px;
     flex-shrink: 0;
+  }
+
+  .hero-overlay__cta--ghost {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, .8);
   }
 
   /* line-art illustration on the right (s-mainwp2_img.svg) */
@@ -677,13 +689,13 @@
   /* ===== 4. Strengths ===== */
   .strengths__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
   }
 
   .strength-card {
     background: #fff;
-    padding: 48px 36px;
+    padding: 40px 26px;
     text-align: center;
     border-top: 3px solid var(--primary);
     box-shadow: 0 2px 10px rgba(0, 0, 0, .04);
@@ -875,6 +887,40 @@
   }
 
   /* ===== 7. Flow (ご利用の流れ) ===== */
+  .flow__tabs {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 52px;
+  }
+
+  .flow__tab {
+    padding: 13px 32px;
+    border: 1px solid var(--primary);
+    border-radius: 999px;
+    color: var(--primary);
+    font-size: 15px;
+    font-weight: 700;
+    transition: background .25s, color .25s;
+  }
+
+  .flow__tab:hover {
+    background: #e8f0fa;
+  }
+
+  .flow__tab.is-active {
+    background: var(--primary);
+    color: #fff;
+  }
+
+  .flow__panel {
+    display: none;
+  }
+
+  .flow__panel.is-active {
+    display: block;
+  }
+
   .flow__steps {
     display: flex;
     gap: 0;
@@ -1425,17 +1471,23 @@
 <section class="hero-overlay">
   <img class="hero-overlay__art" src="/images/s-mainwp2_img.svg" alt="">
   <div class="hero-overlay__inner">
-    <h2>提案力で期待に応える<br>ベストなモノづくりパートナー</h2>
+    <h2>総合機械加工ソリューション<br>複雑3D CNC加工 × プロフェッショナル治具設計</h2>
     <p>
-      モノづくりメーカーのニーズを丁寧に汲み取り、<br>
-      各種の技術や加工方法を組み合わせて新たな部品や製品を創り出す。<br>
-      興盛ネクサスは、「価値（Value）創造企業」として<br>
-      お客様の課題解決とともに社会へ貢献していきます。
+      高速マシニングセンタ「ロボドリル」の性能を最大限に引き出し、<br>
+      アルミ・樹脂・鉄・鋼・ステンレスの精密加工から、自動車業界向けの治具設計、<br>
+      日越戦略パートナー網による大型溶接構造まで。<br>
+      設計から完成品まで、あらゆるモノづくりのご要望にお応えします。
     </p>
-    <a class="hero-overlay__cta" href="#strengths">
-      <span>興盛ネクサスの<br>強みと機能</span>
-      <span class="arrow">→</span>
-    </a>
+    <div class="hero-overlay__actions">
+      <a class="hero-overlay__cta" href="contact-us/">
+        <span>図面を送って<br>お見積り依頼</span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="hero-overlay__cta hero-overlay__cta--ghost" href="about-us/">
+        <span>会社案内を<br>見る</span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
   </div>
 </section>
 </div>
@@ -1448,10 +1500,10 @@
     <div class="overview__grid">
       <div class="overview__text">
         <p>
-          興盛ネクサス株式会社は、三重県桑名市を拠点とする精密機械加工メーカーです。
-          CNCマシニングセンタによる精密部品加工と、機械装置用治具の設計・製作を手がけ、
-          アルミ・樹脂の切削加工を得意としています。
-          「品質第一・納期厳守」を信条に、試作から量産まで、お客様の期待を超えるモノづくりでお応えします。
+          興盛ネクサス株式会社は、構想設計から完成品まで一貫対応する「信頼される技術パートナー」です。
+          ロボドリルによる多材質（アルミ・樹脂・鉄・鋼・ステンレス）の高速3D加工と優れた面品位、
+          そして自動車業界で培った複雑治具（JIG）の設計・製作を自社の強みとしています。
+          さらにベトナム・日本の戦略的パートナー網により、大型溶接構造案件までワンストップでお引き受けします。
         </p>
         <a class="btn-more" href="about-us/">会社紹介を詳しく見る</a>
       </div>
@@ -1480,9 +1532,21 @@
             <line x1="19" y1="12" x2="23" y2="12"/>
           </svg>
         </div>
-        <h3>高精度加工</h3>
+        <h3>複雑3D加工の<br>スペシャリスト</h3>
         <p>
-          公差<strong>±0.005mm〜±0.01mm</strong>の高精度加工に対応。恒温環境での仕上げ・三次元測定機による全数検査で、ミクロン単位の品質を安定して実現します。
+          アルミ・樹脂・鉄・鋼・ステンレスの<strong>高速3Dフライス加工</strong>を完全マスター。ツールマークやバリのない、優れた仕上げ面を保証します。
+        </p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2l8 3.5v6c0 5-3.4 8.6-8 10.5-4.6-1.9-8-5.5-8-10.5v-6z"/>
+            <path d="M8.5 12l2.5 2.5L16 9.5"/>
+          </svg>
+        </div>
+        <h3>標準化された<br>QC体制</h3>
+        <p>
+          専用QCルームと<strong>工程ごとの厳格な検査</strong>を徹底。マイクロメータ・ダイヤルゲージ・ピン／ブロックゲージ・ハイトゲージを完備しています。
         </p>
       </div>
       <div class="strength-card">
@@ -1493,24 +1557,21 @@
             <path d="M3 8V4.5A1.5 1.5 0 0 1 4.5 3H8"/>
           </svg>
         </div>
-        <h3>治具設計力</h3>
+        <h3>実践的な<br>治具設計力</h3>
         <p>
-          経験豊富なエンジニアが図面の意図まで読み解き、<strong>段取り時間を短縮する治具の最適化提案</strong>を含めて、設計から一貫対応いたします。
+          自動車業界の生産・組立工程を熟知。<strong>ポカヨケを徹底した使いやすい治具</strong>を、設計から製作・トライアウトまで一貫提供します。
         </p>
       </div>
       <div class="strength-card">
         <div class="strength-card__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M1 8h13v9H1z"/>
-            <path d="M14 11h4l3 3v3h-7z"/>
-            <circle cx="5.5" cy="19" r="1.8"/>
-            <circle cx="17.5" cy="19" r="1.8"/>
-            <path d="M4 5.5h6M2 3h6"/>
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M3 12h18M12 3c2.5 2.6 4 5.7 4 9s-1.5 6.4-4 9c-2.5-2.6-4-5.7-4-9s1.5-6.4 4-9z"/>
           </svg>
         </div>
-        <h3>納期とコスト</h3>
+        <h3>ワンストップ<br>対応力</h3>
         <p>
-          お見積りは最短即日回答。最適な加工方法のご提案によるコスト低減と、<strong>納期遵守率100%</strong>の生産管理体制で、安心してお任せいただけます。
+          自社の加工力と<strong>日越パートナー網</strong>を組み合わせ、微細な精密部品から大型溶接構造まで、トータルでお任せいただけます。
         </p>
       </div>
     </div>
@@ -1531,57 +1592,84 @@
       <div class="slider__viewport" id="worksViewport">
         <ul class="slider__track">
       <li class="work-card">
-        <figure><img src="/images/01.jpeg" alt="加工用治具"></figure>
-        <span class="work-card__tag">加工用治具</span>
-        <h3>マシニング用クランプ治具</h3>
+        <figure><img src="/images/product-1.png" alt="アルミ製3Dヒートシンク"></figure>
+        <span class="work-card__tag">CNC精密加工</span>
+        <h3>アルミ製3Dヒートシンク</h3>
         <dl>
-          <div><dt>材質</dt><dd>S45C（焼入れ処理）</dd></div>
-          <div><dt>精度</dt><dd>±0.01mm</dd></div>
+          <div><dt>材質</dt><dd>A6061</dd></div>
+          <div><dt>特長</dt><dd>三次元放熱フィンの高速加工</dd></div>
         </dl>
       </li>
       <li class="work-card">
-        <figure><img src="/images/02.jpeg" alt="検査治具"></figure>
-        <span class="work-card__tag">検査治具</span>
-        <h3>寸法検査用ゲージ治具</h3>
+        <figure><img src="/images/product-2.jpg" alt="制御ボックス筐体"></figure>
+        <span class="work-card__tag">CNC精密加工</span>
+        <h3>制御ボックス筐体</h3>
+        <dl>
+          <div><dt>材質</dt><dd>A6061</dd></div>
+          <div><dt>特長</dt><dd>面品位を重視した筐体切削</dd></div>
+        </dl>
+      </li>
+      <li class="work-card">
+        <figure><img src="/images/product-3.png" alt="高機能樹脂部品"></figure>
+        <span class="work-card__tag">CNC精密加工</span>
+        <h3>高機能樹脂部品</h3>
+        <dl>
+          <div><dt>材質</dt><dd>POM・PEEK・アクリル</dd></div>
+          <div><dt>特長</dt><dd>変形を抑えた精密切削</dd></div>
+        </dl>
+      </li>
+      <li class="work-card">
+        <figure><img src="/images/product-4.png" alt="エンジン組立用治具"></figure>
+        <span class="work-card__tag">治具設計・製作</span>
+        <h3>エンジン組立用治具</h3>
+        <dl>
+          <div><dt>用途</dt><dd>自動車エンジンの組立</dd></div>
+          <div><dt>特長</dt><dd>ポカヨケ刻印・クランプ機構</dd></div>
+        </dl>
+      </li>
+      <li class="work-card">
+        <figure><img src="/images/product-5.png" alt="検査治具（チェッキングフィクスチャー）"></figure>
+        <span class="work-card__tag">治具設計・製作</span>
+        <h3>検査治具（チェッキングフィクスチャー）</h3>
+        <dl>
+          <div><dt>用途</dt><dd>部品の迅速な合否判定</dd></div>
+          <div><dt>特長</dt><dd>測定基準面の高精度仕上げ</dd></div>
+        </dl>
+      </li>
+      <li class="work-card">
+        <figure><img src="/images/product-6.png" alt="溶接治具"></figure>
+        <span class="work-card__tag">治具設計・製作</span>
+        <h3>溶接治具</h3>
+        <dl>
+          <div><dt>用途</dt><dd>溶接時の位置決め・固定</dd></div>
+          <div><dt>特長</dt><dd>防眩サンドブラスト仕上げ</dd></div>
+        </dl>
+      </li>
+      <li class="work-card">
+        <figure><img src="/images/product-7.png" alt="産業機械用架台フレーム"></figure>
+        <span class="work-card__tag">溶接構造・重量物</span>
+        <h3>産業機械用架台フレーム</h3>
+        <dl>
+          <div><dt>材質</dt><dd>SS400・S45C</dd></div>
+          <div><dt>特長</dt><dd>製缶＋機械加工の一貫対応</dd></div>
+        </dl>
+      </li>
+      <li class="work-card">
+        <figure><img src="/images/product-8.png" alt="大型治具ベース"></figure>
+        <span class="work-card__tag">溶接構造・重量物</span>
+        <h3>大型治具ベース</h3>
+        <dl>
+          <div><dt>材質</dt><dd>スチール</dd></div>
+          <div><dt>特長</dt><dd>大型構造を支える高剛性ベース</dd></div>
+        </dl>
+      </li>
+      <li class="work-card">
+        <figure><img src="/images/product-9.png" alt="ステンレス溶接構造物"></figure>
+        <span class="work-card__tag">溶接構造・重量物</span>
+        <h3>ステンレス溶接構造物</h3>
         <dl>
           <div><dt>材質</dt><dd>SUS304</dd></div>
-          <div><dt>精度</dt><dd>±0.005mm</dd></div>
-        </dl>
-      </li>
-      <li class="work-card">
-        <figure><img src="/images/03.jpeg" alt="精密機械部品"></figure>
-        <span class="work-card__tag">精密機械部品</span>
-        <h3>搬送装置用シャフト</h3>
-        <dl>
-          <div><dt>材質</dt><dd>SUS303</dd></div>
-          <div><dt>精度</dt><dd>±0.008mm</dd></div>
-        </dl>
-      </li>
-      <li class="work-card">
-        <figure><img src="/images/04.jpeg" alt="加工用治具"></figure>
-        <span class="work-card__tag">加工用治具</span>
-        <h3>溶接位置決め治具</h3>
-        <dl>
-          <div><dt>材質</dt><dd>SS400</dd></div>
-          <div><dt>精度</dt><dd>±0.02mm</dd></div>
-        </dl>
-      </li>
-      <li class="work-card">
-        <figure><img src="/images/01.jpeg" alt="検査治具"></figure>
-        <span class="work-card__tag">検査治具</span>
-        <h3>組立確認用チェック治具</h3>
-        <dl>
-          <div><dt>材質</dt><dd>A5052＋SUS304</dd></div>
-          <div><dt>精度</dt><dd>±0.01mm</dd></div>
-        </dl>
-      </li>
-      <li class="work-card">
-        <figure><img src="/images/02.jpeg" alt="精密機械部品"></figure>
-        <span class="work-card__tag">精密機械部品</span>
-        <h3>金型用コアピン</h3>
-        <dl>
-          <div><dt>材質</dt><dd>SKD61</dd></div>
-          <div><dt>精度</dt><dd>±0.005mm</dd></div>
+          <div><dt>特長</dt><dd>耐食性に優れた溶接構造</dd></div>
         </dl>
       </li>
         </ul>
@@ -1605,46 +1693,46 @@
     <h2 class="section__title">主要設備</h2>
     <div class="equipment__grid">
       <div class="equip-card">
-        <figure><img src="/images/01.jpeg" alt="立形マシニングセンタ"></figure>
+        <figure><img src="/images/equipment-1.jpeg" alt="高速マシニングセンタ ロボドリル α-T14iD"></figure>
         <div class="equip-card__body">
-          <p class="equip-card__maker">MAZAK（日本）</p>
-          <h3>立形マシニングセンタ<br>VCN-530C</h3>
+          <p class="equip-card__maker">FANUC（日本）</p>
+          <h3>高速マシニングセンタ<br>ロボドリル α-T14iD</h3>
           <table>
-            <tr><th>X-Y-Z</th><td>1,050 × 530 × 510 mm</td></tr>
-            <tr><th>主軸回転</th><td>12,000 min⁻¹</td></tr>
+            <tr><th>用途</th><td>3D高速フライス・複雑形状加工</td></tr>
+            <tr><th>材質</th><td>アルミ・樹脂・鉄・鋼・SUS</td></tr>
           </table>
         </div>
       </div>
       <div class="equip-card">
-        <figure><img src="/images/02.jpeg" alt="ワイヤ放電加工機"></figure>
+        <figure><img src="/images/equipment-3.jpeg" alt="彫刻機"></figure>
         <div class="equip-card__body">
-          <p class="equip-card__maker">SODICK（日本）</p>
-          <h3>ワイヤ放電加工機<br>AL400G</h3>
+          <p class="equip-card__maker">刻印・マーキング</p>
+          <h3>彫刻機</h3>
           <table>
-            <tr><th>X-Y-Z</th><td>400 × 300 × 250 mm</td></tr>
-            <tr><th>最良面粗さ</th><td>Rz 1.0 µm</td></tr>
+            <tr><th>用途</th><td>ロゴ・シリアル番号の刻印</td></tr>
+            <tr><th>特長</th><td>ポカヨケ表示・トレーサビリティ</td></tr>
           </table>
         </div>
       </div>
       <div class="equip-card">
-        <figure><img src="/images/03.jpeg" alt="CNC旋盤"></figure>
+        <figure><img src="/images/equipment-2.jpeg" alt="サンドブラスト"></figure>
         <div class="equip-card__body">
-          <p class="equip-card__maker">OKUMA（日本）</p>
-          <h3>CNC旋盤<br>GENOS L250-e</h3>
+          <p class="equip-card__maker">表面処理・後加工</p>
+          <h3>サンドブラスト</h3>
           <table>
-            <tr><th>最大加工径</th><td>φ250 mm</td></tr>
-            <tr><th>加工長さ</th><td>390 mm</td></tr>
+            <tr><th>用途</th><td>微細バリ除去・梨地仕上げ</td></tr>
+            <tr><th>特長</th><td>アルマイト・塗装前の下地処理</td></tr>
           </table>
         </div>
       </div>
       <div class="equip-card">
-        <figure><img src="/images/04.jpeg" alt="三次元測定機"></figure>
+        <figure><img src="/images/04.jpeg" alt="精密測定器"></figure>
         <div class="equip-card__body">
-          <p class="equip-card__maker">MITUTOYO（日本）</p>
-          <h3>CNC三次元測定機<br>CRYSTA-Apex S 9106</h3>
+          <p class="equip-card__maker">品質保証</p>
+          <h3>精密測定器一式</h3>
           <table>
-            <tr><th>X-Y-Z</th><td>900 × 1,000 × 600 mm</td></tr>
-            <tr><th>最大許容誤差</th><td>(1.7+3L/1000) µm</td></tr>
+            <tr><th>構成</th><td>ノギス・マイクロメータ・ハイトゲージ他</td></tr>
+            <tr><th>用途</th><td>工程内検査・穴径のピン／ブロック検査</td></tr>
           </table>
         </div>
       </div>
@@ -1660,43 +1748,81 @@
   <div class="section__inner">
     <p class="section__label">FLOW</p>
     <h2 class="section__title">ご利用の流れ</h2>
+    <div class="flow__tabs" role="tablist">
+      <button class="flow__tab is-active" role="tab" aria-selected="true" data-target="flow-cnc">CNC加工の流れ</button>
+      <button class="flow__tab" role="tab" aria-selected="false" data-target="flow-jig">治具設計・製作の流れ</button>
+    </div>
+    <div class="flow__panel is-active" id="flow-cnc" role="tabpanel">
     <div class="flow__steps">
       <div class="flow-step">
         <div class="flow-step__num" aria-hidden="true"></div>
         <div>
-          <h3>図面・ご要望の送付</h3>
-          <p>お問い合わせフォームより図面（PDF・STEP・DXF）をお送りください。ポンチ絵からのご相談も歓迎です。</p>
+          <h3>ご要望の受付</h3>
+          <p>2D／3D図面（STEP・IGES）を受領し、材質（アルミ・樹脂・ステンレス等）と公差を分析します。</p>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-step__num" aria-hidden="true"></div>
         <div>
-          <h3>ご相談・お見積り</h3>
-          <p>内容を確認のうえ、最短即日〜2営業日でお見積りをご提示。仕様のご相談は日本語で対応します。</p>
+          <h3>3D CAMプログラミング</h3>
+          <p>高速加工の工具経路を戦略的に設計。加工時間を最適化し、なめらかな面品位を確保します。</p>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-step__num" aria-hidden="true"></div>
         <div>
-          <h3>設計・ご承認</h3>
-          <p>治具設計の場合は3Dモデル・組図をご提出し、お客様のご承認をいただいてから製作へ進みます。</p>
+          <h3>ロボドリルによる加工</h3>
+          <p>荒加工から仕上げまで高精度に。樹脂・アルミ特有の削り込みや変形を抑えて加工します。</p>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-step__num" aria-hidden="true"></div>
         <div>
-          <h3>加工・品質検査</h3>
-          <p>社内一貫体制で加工。三次元測定機による検査成績書を全品に添付し、品質を保証します。</p>
+          <h3>後処理（バリ取り・刻印）</h3>
+          <p>サンドブラストで微細バリを除去し均一な梨地に。彫刻機でロゴやシリアル番号を刻印します。</p>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-step__num" aria-hidden="true"></div>
         <div>
-          <h3>納品</h3>
-          <p>防錆・梱包にも配慮し、ご指定の場所へ納品。お急ぎの案件は直接配送のご相談も承ります。</p>
+          <h3>品質検査・出荷</h3>
+          <p>ダイヤルゲージ・ノギス・マイクロメータで機上測定。ピン／ブロックゲージで穴径を確認し出荷します。</p>
         </div>
       </div>
     </div>
+    </div>
+
+    <div class="flow__panel" id="flow-jig" role="tabpanel">
+      <div class="flow__steps">
+        <div class="flow-step">
+          <div class="flow-step__num" aria-hidden="true"></div>
+          <div>
+            <h3>課題のヒアリング</h3>
+            <p>生産ライン（特に自動車業界）での作業・組立のご要望を伺い、治具に求められる課題を整理します。</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num" aria-hidden="true"></div>
+          <div>
+            <h3>設計・DFM／ポカヨケ</h3>
+            <p>3D構想設計にクランプ機構やセンサを統合。誤作業を防ぐポカヨケの原理を織り込み、指示表示を治具本体へ刻印します。</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num" aria-hidden="true"></div>
+          <div>
+            <h3>加工・組立</h3>
+            <p>ベースや位置決めピン等の構成部品を精密加工。ハイトゲージ・ダイヤルゲージで平面・平行を出しながら組み立てます。</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num" aria-hidden="true"></div>
+          <div>
+            <h3>トライアウト・納品</h3>
+            <p>自社工場で試運転（トライアウト）を実施。CMMによる空間測定で精度を確認のうえ、現地への据付までお引き受けします。</p>
+          </div>
+        </div>
+      </div>
   </div>
 </section>
 
@@ -1710,7 +1836,7 @@
         <a href="news/">
           <span class="news__date">2026.07.10</span>
           <span class="news__cat">設備</span>
-          <span class="news__title">立形マシニングセンタ（MAZAK VCN-530C）を新規導入しました</span>
+          <span class="news__title">高速マシニングセンタ「ロボドリル」を増設しました</span>
         </a>
       </li>
       <li>
@@ -1819,6 +1945,20 @@
     window.addEventListener('resize', updateWorksNav);
     updateWorksNav();
   }
+
+  // ---------- flow tabs (CNC / Jig) ----------
+  const flowTabs = document.querySelectorAll('.flow__tab');
+  flowTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      flowTabs.forEach(t => {
+        t.classList.toggle('is-active', t === tab);
+        t.setAttribute('aria-selected', t === tab);
+      });
+      document.querySelectorAll('.flow__panel').forEach(p => {
+        p.classList.toggle('is-active', p.id === tab.dataset.target);
+      });
+    });
+  });
 
   // ---------- ken burns hero loop (from ux.html) ----------
   const kbSlides = document.querySelectorAll('.kb-slide');
