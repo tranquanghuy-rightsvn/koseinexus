@@ -1,0 +1,14 @@
+{
+  "id": "65b4e0f4-43db-48ce-9624-4d91e98e8169",
+  "slug": "20261907_0001",
+  "title": "test nè",
+  "description": "chỉ là mô tả",
+  "author": "",
+  "cover": "news/20261907_0001/images/cover.jpg",
+  "images": [
+    "news/20261907_0001/images/01.jpg"
+  ],
+  "created_at": "2026-07-19T03:47:06.173Z",
+  "updated_at": "2026-07-19T03:55:18.066Z",
+  "content": "<p>xin chào</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>\n<figure class=\"image\"><img src=\"news/20261907_0001/images/01.jpg\">\n<figcaption>test thôi</figcaption>\n</figure>\n<p>&nbsp;</p>\n<p>hello world</p>"
+}
