@@ -1089,6 +1089,35 @@
     opacity: .88;
   }
 
+  .contact__submit:disabled {
+    opacity: .6;
+    cursor: default;
+  }
+
+  .hp-field {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+  }
+
+  .form-status {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 14.5px;
+    line-height: 1.9;
+    display: none;
+  }
+
+  .form-status.is-ok {
+    display: block;
+    color: #0a7a3d;
+  }
+
+  .form-status.is-error {
+    display: block;
+    color: #c0392b;
+  }
+
   /* footer */
   .footer {
     background: #101c2c;
@@ -1713,7 +1742,12 @@
     <p class="contact__lead">
       下記フォームに必要事項をご入力のうえ、送信してください。
     </p>
-    <form class="contact__form" action="#" method="post">
+    <form class="contact__form" id="contactForm" action="#" method="post">
+      <!-- honeypot chống bot: người thật không thấy, bot tự điền -> server âm thầm bỏ qua -->
+      <div class="hp-field" aria-hidden="true">
+        <label for="f-hp">Company website</label>
+        <input type="text" id="f-hp" name="hp" tabindex="-1" autocomplete="off">
+      </div>
       <div class="form-row">
         <label for="f-company">会社名<span class="req">必須</span></label>
         <input type="text" id="f-company" name="company" required>
@@ -1730,7 +1764,8 @@
         <label for="f-message">お問い合わせ内容<span class="req">必須</span></label>
         <textarea id="f-message" name="message" required></textarea>
       </div>
-      <button type="submit" class="contact__submit">送信する</button>
+      <button type="submit" class="contact__submit" id="contactSubmit">送信する</button>
+      <p class="form-status" id="formStatus" role="status"></p>
     </form>
   </div>
 </section>
@@ -1830,6 +1865,62 @@
       kbIndex = (kbIndex + 1) % kbSlides.length;
       kbSlides[kbIndex].classList.add('active');
     }, 5000);
+  }
+
+  // ---------- contact form -> GAS (Google Apps Script) ----------
+  // Dán URL Web app /exec của Apps Script vào đây (Manage deployments -> URL).
+  var GAS_ENDPOINT = 'PASTE_GAS_EXEC_URL_HERE';
+
+  var contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    var statusEl = document.getElementById('formStatus');
+    var submitBtn = document.getElementById('contactSubmit');
+
+    function setStatus(msg, ok) {
+      statusEl.textContent = msg;
+      statusEl.classList.toggle('is-ok', !!ok);
+      statusEl.classList.toggle('is-error', !ok);
+    }
+
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (GAS_ENDPOINT.indexOf('PASTE_') === 0) {
+        setStatus('フォームは現在準備中です。お電話（0594-42-5661）またはLINEでお問い合わせください。', false);
+        return;
+      }
+      var payload = {
+        company: document.getElementById('f-company').value.trim(),
+        name: document.getElementById('f-name').value.trim(),
+        email: document.getElementById('f-email').value.trim(),
+        message: document.getElementById('f-message').value.trim(),
+        hp: document.getElementById('f-hp').value
+      };
+      submitBtn.disabled = true;
+      submitBtn.textContent = '送信中…';
+      // Content-Type: text/plain -> "simple request", trình duyệt không gửi
+      // preflight OPTIONS (GAS không xử lý được OPTIONS sẽ lỗi CORS)
+      fetch(GAS_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (data && data.ok) {
+            contactForm.reset();
+            setStatus('お問い合わせを送信しました。内容を確認のうえ、担当者より折り返しご連絡いたします。', true);
+          } else {
+            setStatus((data && data.error) || '送信に失敗しました。時間をおいてもう一度お試しください。', false);
+          }
+        })
+        .catch(function () {
+          setStatus('送信に失敗しました。お電話（0594-42-5661）またはLINEでもお問い合わせいただけます。', false);
+        })
+        .finally(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = '送信する';
+        });
+    });
   }
 
   // ---------- logo gears (from ux.html) ----------
