@@ -37,6 +37,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://koseinexus.com/news/20261907_0001/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://koseinexus.com/news/20261907_id0001/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>yearly</changefreq>
