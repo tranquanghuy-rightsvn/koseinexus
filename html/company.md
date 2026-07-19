@@ -70,3 +70,25 @@ Bổ sung mới
  Đặc điểm: Khắc hướng dẫn thao tác (Poka-yoke), bề mặt bắn cát chống chói, tích hợp cơ cấu kẹp tự động.
  Hàn Kết Cấu & Gia công Kim loại Nặng (Partner Network):
  Chi tiết: Khung bệ máy công nghiệp, bệ đỡ đồ gá kích thước lớn, các kết cấu hàn thép/inox.
+
+7. News (お知らせ) — 10 đề xuất tiêu đề bài viết
+1. コーポレートサイトを公開しました
+   (Đã khai trương website chính thức của công ty)
+2. 高速マシニングセンタ「ロボドリル」を増設しました
+   (Tăng cường thêm máy gia công tốc độ cao Robodrill)
+3. PEEK・MCナイロンなど高機能樹脂の精密加工に対応を開始しました
+   (Bắt đầu nhận gia công chính xác nhựa kỹ thuật cao PEEK, MC nylon)
+4. 自動車業界向けエンジン組立治具の製作事例を公開しました
+   (Công bố case study đồ gá lắp ráp động cơ cho ngành ô tô)
+5. ベトナムの戦略パートナーと業務提携し、大型溶接構造への対応力を強化しました
+   (Ký hợp tác với đối tác chiến lược Việt Nam, tăng năng lực kết cấu hàn lớn)
+6. ピンゲージ・ブロックゲージを拡充し、検査体制を強化しました
+   (Mở rộng bộ pin gauge/block gauge, tăng cường thể chế kiểm tra)
+7. 5S活動・品質研修を全社で実施しました
+   (Toàn công ty thực hiện hoạt động 5S và đào tạo chất lượng)
+8. 夏季休業のお知らせ（8/13〜8/16）
+   (Thông báo nghỉ hè 13–16/8)
+9. 年末年始休業のお知らせ（12/27〜1/4）
+   (Thông báo nghỉ cuối năm – đầu năm 27/12–4/1)
+10. 加工スタッフ・治具設計エンジニアの採用を開始しました
+   (Bắt đầu tuyển dụng nhân viên gia công và kỹ sư thiết kế đồ gá)
