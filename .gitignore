@@ -1,0 +1,6 @@
+# Google Apps Script — quản lý riêng, KHÔNG push lên GitHub
+gas/
+
+.DS_Store
+__pycache__/
+_tmp*

@@ -1,0 +1,1888 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}} | 興盛ネクサス株式会社</title>
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<meta name="description" content="{{DESCRIPTION}}">
+<link rel="canonical" href="{{URL}}">
+<meta property="og:site_name" content="興盛ネクサス株式会社">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{TITLE}} | 興盛ネクサス株式会社">
+<meta property="og:description" content="{{DESCRIPTION}}">
+<meta property="og:url" content="{{URL}}">
+<meta property="og:image" content="{{COVER_ABS}}">
+<meta name="twitter:card" content="summary_large_image">
+{{JSONLD}}
+<style>
+  :root {
+    --primary: #1b62b5;
+    --primary-dark: #144a8c;
+    --text: #333;
+    --border: #ccc;
+    --header-height: 140px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  section[id] {
+    scroll-margin-top: calc(var(--header-height) + 10px);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    color: var(--text);
+    padding-top: var(--header-height);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font-family: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+  }
+
+  /* ===== Header (fixed) ===== */
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
+    z-index: 1000;
+  }
+
+  .header__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 100%;
+    padding: 0 40px;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  /* --- Logo --- */
+  .logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .logo .logo__text {
+    margin-left: -8px; /* tuck the text into the gear mark's edge */
+  }
+
+  .logo__mark {
+    width: 54px;
+    height: 53px; /* keep the cropped gear viewBox ratio (~1:1) */
+    flex-shrink: 0;
+  }
+
+  /* rotate each gear <g> around its own center (scroll effect) */
+  .gear-rot {
+    transform-box: fill-box;
+    transform-origin: center;
+    will-change: transform;
+  }
+
+  .logo__text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo__text .logo__tagline {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 4px;
+    margin-left: 15px;
+    /* stretch the tagline to exactly the width of the company name */
+    text-align: justify;
+    text-align-last: justify;
+  }
+
+  .logo__text .logo__name {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a1a1a;
+    letter-spacing: .04em;
+    white-space: nowrap;
+  }
+
+  /* --- Right block: search on top, nav below --- */
+  .header__right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    max-width: 900px;
+  }
+
+  .header__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 24px;
+    padding-top: 18px;
+  }
+
+  .search {
+    position: relative;
+    width: 320px;
+  }
+
+  .search input {
+    width: 100%;
+    height: 44px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0 14px 0 44px;
+    font-size: 14px;
+    outline: none;
+  }
+
+  .search input:focus {
+    border-color: var(--primary);
+  }
+
+  .search__icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: #555;
+    pointer-events: none;
+  }
+
+  /* --- Global nav --- */
+  .gnav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .gnav li {
+    position: relative;
+  }
+
+  .gnav li + li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 22px;
+    background: var(--border);
+  }
+
+  .gnav a {
+    display: flex;
+    align-items: center;
+    height: 58px;
+    padding: 0 30px;
+    font-size: 16px;
+    font-weight: 500;
+    position: relative;
+    transition: color .2s;
+  }
+
+  .gnav a::after {
+    content: "";
+    position: absolute;
+    left: 30px;
+    right: 30px;
+    bottom: 8px;
+    height: 2px;
+    background: var(--primary);
+    transform: scaleX(0);
+    transition: transform .2s;
+  }
+
+  .gnav a:hover {
+    color: var(--primary);
+  }
+
+  .gnav a:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* --- Hamburger (mobile only): 3 bars that morph into an X --- */
+  .menu-toggle {
+    display: none;
+    width: 48px;
+    height: 48px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .menu-toggle .bar {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: var(--primary-dark);
+    transition: transform .3s ease, opacity .25s ease;
+  }
+
+  /* gap 6px + bar 2px = 8px offset brings top/bottom bars to the middle */
+  .menu-toggle.is-open .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .menu-toggle.is-open .bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .menu-toggle.is-open .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* ===== Drawer (mobile menu) =====
+     z-index sits BELOW the fixed header (1000), so the real header — and
+     its logo — stays visible and pixel-identical while the drawer is open;
+     the drawer just slides underneath it. */
+  .drawer {
+    position: fixed;
+    inset: 0;
+    padding-top: var(--header-height);
+    background: #fff;
+    z-index: 900;
+    overflow-y: auto;
+    display: none;
+  }
+
+  .drawer.is-open {
+    display: block;
+  }
+
+  /* scroll lock without collapsing the page: body goes position:fixed at
+     the current scroll offset (set via inline top by JS), so nothing jumps
+     or reflows when the drawer opens/closes */
+  body.drawer-open {
+    position: fixed;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+  }
+
+  /* Blue block with search */
+  .drawer__search {
+    background: var(--primary);
+    padding: 40px 20px;
+  }
+
+  .drawer__search .search {
+    width: 100%;
+  }
+
+  .drawer__search .search input {
+    height: 52px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    padding-left: 52px;
+  }
+
+  .drawer__search .search__icon {
+    left: 16px;
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Accordion nav */
+  .drawer__nav ul {
+    list-style: none;
+  }
+
+  .drawer__nav > ul > li {
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .drawer__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 22px 24px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-align: left;
+  }
+
+
+
+
+
+
+
+
+
+  /* ===== Hero: full-screen Ken Burns image loop =====
+     The hero sticks under the fixed menu while .hero-overlay (next sibling)
+     slides up over it; once the overlay fills the screen the hero has hit
+     the bottom of .hero-stack and both scroll away together — and because
+     they then move in lockstep, the overlay keeps the darkened slideshow
+     exactly behind it. */
+  .hero-stack {
+    position: relative;
+  }
+
+  .hero {
+    position: sticky;
+    top: var(--header-height);
+    z-index: 1;
+    width: 100%;
+    height: calc(100vh - var(--header-height)); /* fill the viewport below the fixed header */
+    min-height: 480px;
+    overflow: hidden;
+    color: #fff;
+    display: flex;
+    align-items: center;
+  }
+
+  .kb-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.4s ease;
+    /* zoom runs continuously on EVERY slide (alternate = no snap-back),
+       so removing .active only fades opacity and never jumps the transform */
+    animation: kenBurns 9.3s ease-in-out infinite alternate; /* 1.5x faster zoom */
+    will-change: transform, opacity;
+  }
+
+  .kb-slide.active {
+    opacity: 1;
+  }
+
+  @keyframes kenBurns {
+    from { transform: scale(1.15) translate(0, 0); }
+    to   { transform: scale(1.3) translate(-2%, -1%); }
+  }
+
+  .kb-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, .15), rgba(0, 0, 0, .6));
+    z-index: 1;
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 40px;
+    width: 100%;
+  }
+
+  /* silver-gradient headline (see header-when-scroll.png): bold glyphs
+     filled with a translucent brushed-metal gradient, so the slideshow
+     still glints through the letters */
+  .hero-caption h1,
+  .hero-overlay h2 {
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: .06em;
+    background: linear-gradient(100deg,
+      rgba(75, 85, 100, .88) 0%,
+      rgba(140, 155, 175, .90) 30%,
+      rgba(225, 238, 250, .95) 55%,
+      rgba(245, 250, 255, .95) 70%,
+      rgba(165, 185, 205, .92) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero-caption h1 .hero__line-sub {
+    display: block;
+    font-size: clamp(26px, 3.2vw, 50px);
+    margin-bottom: 10px;
+  }
+
+  .hero-caption h1 .hero__line-main {
+    display: block;
+    font-size: clamp(44px, 6.5vw, 96px);
+  }
+
+  /* layer-1 text: absolutely positioned over the hero's flow slot, NOT
+     sticky — so it scrolls away upward while the slideshow stays pinned */
+  .hero-caption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    height: calc(100vh - var(--header-height));
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    pointer-events: none;
+  }
+
+  /* ===== Hero overlay: dark layer that slides up over the pinned hero ===== */
+  .hero-overlay {
+    position: relative;
+    z-index: 2;
+    min-height: calc(100vh - var(--header-height));
+    background: rgba(0, 0, 0, .5);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-overlay__inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    width: 100%;
+  }
+
+  .hero-overlay h2 {
+    font-size: clamp(24px, 3vw, 42px);
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+
+  .hero-overlay p {
+    font-size: 17px;
+    line-height: 2.1;
+    margin-bottom: 56px;
+    max-width: 720px;
+  }
+
+  .hero-overlay__cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    width: 380px;
+    max-width: 100%;
+    background: #fff;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 26px 32px;
+    transition: opacity .2s;
+  }
+
+  .hero-overlay__cta:hover {
+    opacity: .85;
+  }
+
+  .hero-overlay__cta .arrow {
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  /* line-art illustration on the right (s-mainwp2_img.svg) */
+  .hero-overlay__art {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    bottom: 0;
+    height: 96%;
+    max-width: 55%;
+    object-fit: contain;
+    object-position: right bottom;
+    pointer-events: none;
+  }
+
+  /* ===== card slider (Our Products) ===== */
+  .slider {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .slider__viewport {
+    flex: 1;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .slider__viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .slider__track {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+  }
+
+  .slider__track > li {
+    flex: 0 0 calc((100% - 2 * 32px) / 3); /* 3 per view */
+    scroll-snap-align: start;
+  }
+
+  /* prev / next buttons at both ends */
+  .slider__nav {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #d5d9dd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    transition: background .2s, color .2s, opacity .2s;
+  }
+
+  .slider__nav svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .slider__nav:hover:not(:disabled) {
+    background: var(--primary);
+    color: #fff;
+  }
+
+  .slider__nav:disabled {
+    opacity: .35;
+    cursor: default;
+  }
+
+  @media (max-width: 1100px) {
+    .slider__track > li {
+      flex: 0 0 calc((100% - 32px) / 2); /* 2 per view */
+    }
+  }
+
+  @media (max-width: 640px) {
+    .slider {
+      gap: 10px;
+    }
+
+    .slider__nav {
+      width: 40px;
+      height: 40px;
+    }
+
+    .slider__track > li {
+      flex: 0 0 100%; /* 1 per view */
+    }
+  }
+
+  /* ===== Shared section shell ===== */
+  .section {
+    padding: 100px 0;
+  }
+
+  .section--gray {
+    background: #eef0f2;
+  }
+
+  .section__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .section__label {
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    margin-bottom: 10px;
+  }
+
+  .section__title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 48px;
+  }
+
+  /* bordered "view more" button */
+  .btn-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 36px;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    font-size: 15px;
+    font-weight: 700;
+    transition: background .25s, color .25s;
+  }
+
+  .btn-more::after {
+    content: "→";
+    font-size: 18px;
+    transition: transform .25s;
+  }
+
+  .btn-more:hover {
+    background: var(--primary);
+    color: #fff;
+  }
+
+  .btn-more:hover::after {
+    transform: translateX(4px);
+  }
+
+  /* ===== 3. Company overview ===== */
+  .overview__grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .overview__text p {
+    font-size: 16px;
+    line-height: 2.2;
+    color: #333;
+    margin-bottom: 36px;
+  }
+
+  .overview__photo {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .overview__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ===== 4. Strengths ===== */
+  .strengths__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .strength-card {
+    background: #fff;
+    padding: 48px 36px;
+    text-align: center;
+    border-top: 3px solid var(--primary);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .04);
+  }
+
+  .strength-card__icon {
+    width: 84px;
+    height: 84px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    background: #e8f0fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+  }
+
+  .strength-card__icon svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .strength-card h3 {
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: #1a1a1a;
+  }
+
+  .strength-card p {
+    font-size: 14.5px;
+    line-height: 2;
+    color: #444;
+    text-align: left;
+  }
+
+  .strength-card p strong {
+    color: var(--primary-dark);
+  }
+
+  /* ===== 5. Our Products ===== */
+  #works .slider {
+    margin-bottom: 28px;
+  }
+
+  #works .section__foot {
+    margin-top: 40px;
+  }
+
+  .work-card figure {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    margin-bottom: 14px;
+    background: #dde1e5;
+  }
+
+  .work-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+  }
+
+  .work-card:hover img {
+    transform: scale(1.05);
+  }
+
+  /* confidentiality mask on sensitive shots */
+  .work-card.is-masked img {
+    filter: blur(7px);
+    transform: scale(1.08);
+  }
+
+  .work-card.is-masked figure::after {
+    content: "機密保持のため画像処理済み";
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 6px 10px;
+    font-size: 11px;
+    color: #fff;
+    background: rgba(0, 0, 0, .55);
+    text-align: center;
+  }
+
+  .work-card__tag {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 2px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+
+  .work-card h3 {
+    font-size: 16.5px;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+  }
+
+  .work-card dl {
+    font-size: 13.5px;
+    color: #555;
+    line-height: 1.9;
+  }
+
+  .work-card dl div {
+    display: flex;
+    gap: 10px;
+  }
+
+  .work-card dt {
+    flex-shrink: 0;
+    color: #888;
+  }
+
+  .works__note {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 44px;
+  }
+
+  .section__foot {
+    text-align: center;
+  }
+
+  /* ===== 6. Equipment (主要設備) ===== */
+  .equipment__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-bottom: 56px;
+  }
+
+  .equip-card {
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
+  }
+
+  .equip-card figure {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .equip-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .equip-card__body {
+    padding: 20px 22px 26px;
+  }
+
+  .equip-card__maker {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: .08em;
+    margin-bottom: 6px;
+  }
+
+  .equip-card h3 {
+    font-size: 17px;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+
+  .equip-card table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    color: #555;
+  }
+
+  .equip-card th,
+  .equip-card td {
+    text-align: left;
+    padding: 6px 0;
+    border-top: 1px solid #eee;
+    font-weight: 400;
+  }
+
+  .equip-card th {
+    width: 5.5em;
+    color: #888;
+  }
+
+  /* ===== 7. Flow (ご利用の流れ) ===== */
+  .flow__steps {
+    display: flex;
+    gap: 0;
+    counter-reset: flow;
+  }
+
+  .flow-step {
+    flex: 1;
+    position: relative;
+    text-align: center;
+    padding: 0 18px;
+  }
+
+  /* arrow between steps */
+  .flow-step + .flow-step::before {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 34px;
+    width: 14px;
+    height: 14px;
+    border-top: 2px solid var(--primary);
+    border-right: 2px solid var(--primary);
+    transform: rotate(45deg);
+  }
+
+  .flow-step__num {
+    counter-increment: flow;
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .flow-step__num::before {
+    content: counter(flow);
+  }
+
+  .flow-step h3 {
+    font-size: 16.5px;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+  }
+
+  .flow-step p {
+    font-size: 13.5px;
+    line-height: 1.9;
+    color: #555;
+    text-align: left;
+  }
+
+  /* ===== 8. News (お知らせ) ===== */
+  .news__list {
+    list-style: none;
+    border-top: 1px solid #ddd;
+    margin-bottom: 44px;
+  }
+
+  .news__list li {
+    border-bottom: 1px solid #ddd;
+  }
+
+  .news__list a {
+    display: flex;
+    align-items: baseline;
+    gap: 28px;
+    padding: 24px 8px;
+    transition: background .2s;
+  }
+
+  .news__list a:hover {
+    background: #f5f7f9;
+  }
+
+  .news__date {
+    flex-shrink: 0;
+    font-size: 14px;
+    color: #888;
+    font-family: Georgia, serif;
+    letter-spacing: .04em;
+  }
+
+  .news__cat {
+    flex-shrink: 0;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 999px;
+    padding: 2px 12px;
+    align-self: center;
+  }
+
+  .news__title {
+    font-size: 15.5px;
+    color: #1a1a1a;
+    line-height: 1.7;
+  }
+
+  /* ===== 9. Contact + Footer ===== */
+  .contact {
+    background: linear-gradient(135deg, var(--primary-dark), #0d3160);
+    color: #fff;
+    padding: 100px 0;
+  }
+
+  .contact .section__label {
+    color: #9ec4ee;
+  }
+
+  .contact .section__title {
+    color: #fff;
+    margin-bottom: 16px;
+  }
+
+  .contact__lead {
+    font-size: 15px;
+    line-height: 2;
+    margin-bottom: 48px;
+    color: #d8e4f2;
+  }
+
+  .contact__form {
+    background: #fff;
+    color: var(--text);
+    padding: 56px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .form-row {
+    margin-bottom: 26px;
+  }
+
+  .form-row label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+  }
+
+  .form-row .req {
+    display: inline-block;
+    font-size: 11px;
+    color: #fff;
+    background: #c0392b;
+    border-radius: 3px;
+    padding: 1px 8px;
+    margin-left: 8px;
+    vertical-align: 2px;
+  }
+
+  .form-row input[type="text"],
+  .form-row input[type="email"],
+  .form-row textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 12px 14px;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+  }
+
+  .form-row input:focus,
+  .form-row textarea:focus {
+    border-color: var(--primary);
+  }
+
+  .form-row textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+
+
+
+
+
+
+
+  .contact__submit {
+    display: block;
+    width: 320px;
+    max-width: 100%;
+    margin: 40px auto 0;
+    background: var(--primary);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 18px 0;
+    border-radius: 4px;
+    transition: opacity .2s;
+  }
+
+  .contact__submit:hover {
+    opacity: .88;
+  }
+
+  /* footer */
+  .footer {
+    background: #101c2c;
+    color: #cfd8e3;
+  }
+
+  .footer__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 70px 40px 50px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1.3fr;
+    gap: 50px;
+  }
+
+  .footer__brand .logo__name {
+    color: #fff;
+    font-size: 22px;
+    display: block;
+    margin-bottom: 18px;
+  }
+
+  .footer__brand address {
+    font-style: normal;
+    font-size: 14px;
+    line-height: 2.1;
+  }
+
+  .footer__brand a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .footer__line {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .footer__line img {
+    display: block;
+    width: 88px;
+    height: 88px;
+    object-fit: contain;
+    background: #fff;
+    padding: 4px;
+  }
+
+  .footer__line p {
+    font-size: 12.5px;
+    line-height: 1.9;
+  }
+
+  .footer__nav ul {
+    list-style: none;
+  }
+
+  .footer__nav li {
+    margin-bottom: 12px;
+  }
+
+  .footer__nav a {
+    font-size: 14px;
+    transition: color .2s;
+  }
+
+  .footer__nav a:hover {
+    color: #fff;
+  }
+
+  .footer__map iframe {
+    width: 100%;
+    height: 240px;
+    border: 0;
+    display: block;
+    filter: grayscale(.2);
+  }
+
+  .footer__copy {
+    border-top: 1px solid rgba(255, 255, 255, .12);
+    text-align: center;
+    font-size: 12.5px;
+    padding: 22px 16px;
+    color: #8fa0b5;
+  }
+
+  /* ===== desktop: the hidden dark layer is exactly as tall as its slot in
+     .hero-stack (= the pinned hero), so the moment it touches the top the
+     stack ends and the page simply scrolls on — it never slides under the
+     header ===== */
+  @media (min-width: 1101px) {
+    .hero-overlay {
+      height: calc(100vh - var(--header-height));
+      min-height: 480px; /* mirror .hero so both halves stay equal */
+    }
+  }
+
+  /* ===== news page ===== */
+  .page-hero {
+    position: relative;
+    height: 380px;
+    background: url('/images/banner.jpeg') center / cover no-repeat;
+    display: flex;
+    align-items: center;
+    color: #fff;
+  }
+
+  .page-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 16, 28, .62);
+  }
+
+  .page-hero__inner {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    width: 100%;
+  }
+
+  .page-hero__sub {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .28em;
+    color: #9ec4ee;
+    margin-bottom: 12px;
+  }
+
+  .page-hero h1,
+  .page-hero .page-hero__title {
+    font-size: clamp(36px, 4.2vw, 60px);
+    font-weight: 700;
+    letter-spacing: .08em;
+    line-height: 1.2;
+    background: linear-gradient(100deg,
+      rgba(200, 212, 225, .95) 0%,
+      rgba(245, 250, 255, .98) 45%,
+      rgba(165, 185, 205, .95) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .breadcrumb {
+    background: #f5f7f9;
+    font-size: 13px;
+    color: #777;
+  }
+
+  .breadcrumb ol {
+    list-style: none;
+    display: flex;
+    gap: 8px;
+    padding: 14px 0;
+  }
+
+  .breadcrumb li + li::before {
+    content: "›";
+    margin-right: 8px;
+    color: #aaa;
+  }
+
+  .breadcrumb a {
+    color: var(--primary);
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  /* news card grid: each article wrapped in a clean border, 10px padding */
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .news-card {
+    display: block;
+    border: 1px solid #d9dee3;
+    border-radius: 6px;
+    padding: 10px;
+    background: #fff;
+    transition: border-color .25s, box-shadow .25s, transform .25s;
+  }
+
+  .news-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 8px 22px rgba(20, 74, 140, .12);
+    transform: translateY(-3px);
+  }
+
+  .news-card figure {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 3px;
+    margin-bottom: 14px;
+  }
+
+  .news-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .news-card__date {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #777;
+    font-family: Georgia, serif;
+    letter-spacing: .04em;
+    margin: 0 6px 8px;
+  }
+
+  .news-card__date svg {
+    width: 15px;
+    height: 15px;
+    color: var(--primary);
+  }
+
+  .news-card h3 {
+    font-size: 16.5px;
+    line-height: 1.6;
+    color: #1a1a1a;
+    margin: 0 6px 8px;
+  }
+
+  .news-card p {
+    font-size: 13.5px;
+    line-height: 1.9;
+    color: #555;
+    margin: 0 6px 6px;
+  }
+
+  @media (max-width: 1100px) {
+    .page-hero {
+      height: 240px;
+    }
+
+    .page-hero__inner {
+      padding: 0 16px;
+    }
+
+    .breadcrumb ol {
+      padding: 12px 16px;
+    }
+
+    .news-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .news-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ===== news article ===== */
+  .article {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .article__meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .article__title {
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 700;
+    line-height: 1.6;
+    color: #1a1a1a;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--primary);
+  }
+
+  .article__figure {
+    margin-bottom: 40px;
+  }
+
+  .article__figure img {
+    width: 100%;
+    display: block;
+  }
+
+  .article__body p {
+    font-size: 15.5px;
+    line-height: 2.2;
+    color: #333;
+    margin-bottom: 28px;
+  }
+
+  .article__body h2 {
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    border-left: 4px solid var(--primary);
+    padding-left: 14px;
+    margin: 44px 0 20px;
+  }
+
+  .article__body ul {
+    margin: 0 0 28px;
+    padding-left: 4px;
+    list-style: none;
+  }
+
+  .article__body ul li {
+    position: relative;
+    padding-left: 22px;
+    font-size: 15.5px;
+    line-height: 2.1;
+    color: #333;
+  }
+
+  .article__body ul li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 13px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary);
+  }
+
+  .article__body a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .article__back {
+    margin-top: 64px;
+    text-align: center;
+  }
+
+  /* ===== responsive for the new sections ===== */
+  @media (max-width: 1100px) {
+    .section {
+      padding: 64px 0;
+    }
+
+    .section__inner {
+      padding: 0 16px;
+    }
+
+    .section__title {
+      font-size: 26px;
+      margin-bottom: 32px;
+    }
+
+    .overview__grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .strengths__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px 20px;
+    }
+
+    .equipment__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px 20px;
+    }
+
+    /* flow becomes vertical */
+    .flow__steps {
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .flow-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 22px;
+      text-align: left;
+      padding: 0;
+    }
+
+    .flow-step__num {
+      margin: 0;
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      font-size: 20px;
+    }
+
+    .flow-step + .flow-step::before {
+      left: 21px;
+      top: -28px;
+      transform: rotate(135deg);
+    }
+
+    .contact__form {
+      padding: 32px 20px;
+    }
+
+    .footer__inner {
+      grid-template-columns: 1fr;
+      gap: 36px;
+      padding: 50px 16px 40px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .strengths__grid,
+    .equipment__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 1100px) {
+    :root { --header-height: 72px; }
+
+    .header__inner {
+      padding: 0 16px;
+    }
+
+    .header__right {
+      display: none;
+    }
+
+    /* fixed + above the drawer (z 2000), so the same button stays visible
+       and morphs into an X while the drawer is open */
+    .menu-toggle {
+      display: flex;
+      position: fixed;
+      top: 12px;
+      right: 16px;
+      z-index: 3000;
+    }
+
+    .logo__mark {
+      width: 41px;
+      height: 40px;
+    }
+
+    .logo__text .logo__tagline {
+      font-size: 10px;
+      margin-bottom: 2px;
+    }
+
+    .logo__text .logo__name {
+      font-size: 18px;
+    }
+
+    /* keep the CTA off the svg art: only ~1/2 of the screen wide */
+    .hero-overlay__cta {
+      width: 50vw;
+      padding: 16px 18px;
+      font-size: 14px;
+      gap: 12px;
+    }
+
+    .hero-overlay__cta .arrow {
+      font-size: 18px;
+    }
+
+    /* on phones the svg art leaves the absolute layer and flows BELOW the
+       CTA, so the button always sits exactly 20px above the image */
+    .hero-overlay {
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-end;
+    }
+
+    .hero-overlay__inner {
+      order: 1;
+      padding: 60px 20px 0;
+    }
+
+    .hero-overlay__art {
+      position: static;
+      order: 2;
+      width: 68%;
+      max-width: none;
+      height: auto;
+      align-self: flex-end;
+      margin-top: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header__inner">
+
+    <!-- Logo -->
+    <a href="../../" class="logo">
+      <svg class="logo__mark" viewBox="8 13.5 90.5 88.5" aria-hidden="true">
+        <g class="gear-rot gear-big"></g>
+        <g class="gear-rot gear-small"></g>
+      </svg>
+      <span class="logo__text">
+        <span class="logo__tagline">つなぐ・つたえる・つくりだす</span>
+        <span class="logo__name">興盛ネクサス株式会社</span>
+      </span>
+    </a>
+
+    <!-- Search + Nav (desktop) -->
+    <div class="header__right">
+      <div class="header__top">
+        <form class="search" role="search" action="#">
+          <svg class="search__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/>
+            <line x1="16.5" y1="16.5" x2="21" y2="21"/>
+          </svg>
+          <input type="search" placeholder="" aria-label="サイト内検索">
+        </form>
+      </div>
+
+      <nav class="gnav" aria-label="グローバルナビゲーション">
+        <ul>
+          <li><a href="../../about-us/">会社紹介</a></li>
+          <li><a href="../../products/">製品紹介</a></li>
+          <li><a href="../../our-equipments/">主要設備</a></li>
+          <li><a href="../">お知らせ</a></li>
+          <li><a href="../../contact-us/">お問い合わせ</a></li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+</header>
+
+<!-- Hamburger (mobile) — outside the header so its z-index can beat the
+     drawer's and the bars stay visible (morphed into an X) while open -->
+<button class="menu-toggle" id="menuToggle" aria-label="メニュー" aria-expanded="false">
+  <span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
+</button>
+
+<!-- Drawer menu (mobile) -->
+<div class="drawer" id="drawer">
+  <div class="drawer__search">
+    <form class="search" role="search" action="#">
+      <svg class="search__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"/>
+        <line x1="16.5" y1="16.5" x2="21" y2="21"/>
+      </svg>
+      <input type="search" placeholder="" aria-label="サイト内検索">
+    </form>
+  </div>
+
+  <nav class="drawer__nav" aria-label="モバイルナビゲーション">
+    <ul>
+      <li><a class="drawer__item" href="../../about-us/">会社紹介</a></li>
+      <li><a class="drawer__item" href="../../products/">製品紹介</a></li>
+      <li><a class="drawer__item" href="../../our-equipments/">主要設備</a></li>
+      <li><a class="drawer__item" href="../">お知らせ</a></li>
+      <li><a class="drawer__item" href="../../contact-us/">お問い合わせ</a></li>
+    </ul>
+  </nav>
+</div>
+
+<!-- Page hero -->
+<section class="page-hero">
+  <div class="page-hero__inner">
+    <p class="page-hero__sub">NEWS</p>
+    <p class="page-hero__title">お知らせ</p>
+  </div>
+</section>
+
+<nav class="breadcrumb" aria-label="パンくずリスト">
+  <div class="section__inner">
+    <ol>
+      <li><a href="../../">ホーム</a></li>
+      <li><a href="../">お知らせ</a></li>
+      <li>{{TITLE}}</li>
+    </ol>
+  </div>
+</nav>
+
+<!-- Article -->
+<section class="section">
+  <div class="section__inner">
+    <article class="article">
+      <div class="article__meta">
+        <span class="news__date">{{DATE_DISPLAY}}</span>
+      </div>
+      <h1 class="article__title">{{TITLE}}</h1>
+      <figure class="article__figure">
+        <img src="{{COVER_SRC}}" alt="{{TITLE}}">
+      </figure>
+      <div class="article__body">
+{{CONTENT}}
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Related articles -->
+<section class="section section--gray">
+  <div class="section__inner">
+    <p class="section__label">RELATED</p>
+    <h2 class="section__title">関連記事</h2>
+    <div class="news-grid">
+{{RELATED_CARDS}}
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <span class="logo__name">興盛ネクサス株式会社</span>
+      <address>
+        〒511-0838　三重県桑名市大字和泉283-2<br>
+        TEL：<a href="tel:0594-42-5661">0594-42-5661</a><br>
+        FAX：0594-42-5661
+      </address>
+      <div class="footer__line">
+        <img src="/images/line.jpeg" alt="LINE友だち追加QRコード" loading="lazy">
+        <p>お急ぎの方はLINEで<br>お問い合わせください</p>
+      </div>
+    </div>
+    <nav class="footer__nav" aria-label="フッターナビゲーション">
+      <ul>
+        <li><a href="../../about-us/">会社紹介</a></li>
+        <li><a href="../../products/">製品紹介</a></li>
+        <li><a href="../../our-equipments/">主要設備</a></li>
+        <li><a href="../">お知らせ</a></li>
+        <li><a href="../../contact-us/">お問い合わせ</a></li>
+      </ul>
+    </nav>
+    <div class="footer__map">
+      <iframe
+        src="https://maps.google.com/maps?q=%E4%B8%89%E9%87%8D%E7%9C%8C%E6%A1%91%E5%90%8D%E5%B8%82%E5%A4%A7%E5%AD%97%E5%92%8C%E6%B3%89283-2&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="興盛ネクサス株式会社 アクセスマップ"></iframe>
+    </div>
+  </div>
+  <p class="footer__copy">© 2026 Kosei Nexus Co., Ltd. All Rights Reserved.</p>
+</footer>
+
+<script>
+  const drawer = document.getElementById('drawer');
+  const menuToggle = document.getElementById('menuToggle');
+
+  let scrollLockY = 0;
+  function setDrawer(open) {
+    if (open) {
+      scrollLockY = window.pageYOffset;
+      document.body.style.top = -scrollLockY + 'px';
+      document.body.classList.add('drawer-open');
+    } else {
+      document.body.classList.remove('drawer-open');
+      document.body.style.top = '';
+      window.scrollTo(0, scrollLockY);
+      gearLastY = scrollLockY; // restoring scroll must not spin the gears
+    }
+    drawer.classList.toggle('is-open', open);
+    menuToggle.classList.toggle('is-open', open);
+    menuToggle.setAttribute('aria-expanded', open);
+  }
+
+  menuToggle.addEventListener('click', () => setDrawer(!drawer.classList.contains('is-open')));
+
+  // close the drawer first so the anchor jump can actually scroll the page
+  document.querySelectorAll('.drawer__nav a').forEach(link => {
+    link.addEventListener('click', () => setDrawer(false));
+  });
+
+  // ---------- Our Products slider ----------
+  const worksViewport = document.getElementById('worksViewport');
+  const worksPrev = document.getElementById('worksPrev');
+  const worksNext = document.getElementById('worksNext');
+  if (worksViewport) {
+    const step = () => {
+      const item = worksViewport.querySelector('.slider__track > li');
+      const gap = parseFloat(getComputedStyle(worksViewport.querySelector('.slider__track')).gap) || 0;
+      return item.offsetWidth + gap;
+    };
+
+    worksPrev.addEventListener('click', () => worksViewport.scrollBy({ left: -step(), behavior: 'smooth' }));
+    worksNext.addEventListener('click', () => worksViewport.scrollBy({ left: step(), behavior: 'smooth' }));
+
+    const updateWorksNav = () => {
+      const maxScroll = worksViewport.scrollWidth - worksViewport.clientWidth;
+      worksPrev.disabled = worksViewport.scrollLeft <= 1;
+      worksNext.disabled = worksViewport.scrollLeft >= maxScroll - 1;
+    };
+    worksViewport.addEventListener('scroll', updateWorksNav, { passive: true });
+    window.addEventListener('resize', updateWorksNav);
+    updateWorksNav();
+  }
+
+  // ---------- ken burns hero loop (from ux.html) ----------
+  const kbSlides = document.querySelectorAll('.kb-slide');
+  if (kbSlides.length) {
+    let kbIndex = 0;
+    setInterval(() => {
+      kbSlides[kbIndex].classList.remove('active');
+      kbIndex = (kbIndex + 1) % kbSlides.length;
+      kbSlides[kbIndex].classList.add('active');
+    }, 5000);
+  }
+
+  // ---------- logo gears (from ux.html) ----------
+  // trapezoid-tooth gear outline: for each tooth, two points on the root
+  // circle (r1) and two on the tip circle (r2), giving the classic
+  // flat-topped tooth profile of a machined spur gear
+  function gearPath(cx, cy, teeth, r1, r2) {
+    const step = Math.PI * 2 / teeth, pts = [];
+    for (let i = 0; i < teeth; i++) {
+      const a = i * step;
+      pts.push((cx + Math.cos(a) * r1).toFixed(2) + ',' + (cy + Math.sin(a) * r1).toFixed(2));
+      pts.push((cx + Math.cos(a + step * 0.14) * r2).toFixed(2) + ',' + (cy + Math.sin(a + step * 0.14) * r2).toFixed(2));
+      pts.push((cx + Math.cos(a + step * 0.36) * r2).toFixed(2) + ',' + (cy + Math.sin(a + step * 0.36) * r2).toFixed(2));
+      pts.push((cx + Math.cos(a + step * 0.5) * r1).toFixed(2) + ',' + (cy + Math.sin(a + step * 0.5) * r1).toFixed(2));
+    }
+    return 'M' + pts.join('L') + 'Z';
+  }
+  // circle drawn as a path so it can punch a real see-through hole out of
+  // the gear body via fill-rule="evenodd" (flat icon style)
+  function circlePath(cx, cy, r) {
+    return 'M' + (cx + r) + ',' + cy +
+           ' A' + r + ',' + r + ' 0 1 0 ' + (cx - r) + ',' + cy +
+           ' A' + r + ',' + r + ' 0 1 0 ' + (cx + r) + ',' + cy + 'Z';
+  }
+
+  // blue tones on white background
+  const GEAR_BIG_COLOR = '#144a8c';
+  const GEAR_SMALL_COLOR = '#2e86de';
+
+  // big gear: 16 teeth, center (42,68); small gear: 8 teeth, center (76,36)
+  // — centers spaced so the teeth visually mesh on the diagonal
+  const bigGears = document.querySelectorAll('.gear-big');
+  const smallGears = document.querySelectorAll('.gear-small');
+
+  bigGears.forEach(g => {
+    g.innerHTML =
+      '<path d="' + gearPath(42, 68, 16, 28, 34) + circlePath(42, 68, 19) + '" fill="' + GEAR_BIG_COLOR + '" fill-rule="evenodd"/>' +
+      '<circle cx="42" cy="68" r="15" fill="none" stroke="' + GEAR_BIG_COLOR + '" stroke-width="2.6"/>';
+  });
+  smallGears.forEach(g => {
+    g.innerHTML =
+      '<path d="' + gearPath(76, 36, 8, 17.5, 22.5) + circlePath(76, 36, 11) + '" fill="' + GEAR_SMALL_COLOR + '" fill-rule="evenodd"/>' +
+      '<circle cx="76" cy="36" r="8" fill="none" stroke="' + GEAR_SMALL_COLOR + '" stroke-width="2"/>';
+  });
+
+  // momentum physics: each scrolled pixel is an impulse on the gear's
+  // angular velocity; every frame friction bleeds the velocity off, so
+  // when scrolling stops the gears keep freewheeling and slow to a halt
+  // like a spun flywheel. Direction reverses with scroll direction.
+  const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+  let gearAngle = 0;
+  let gearVel = 0;              // degrees per frame
+  const GEAR_IMPULSE = 0.06;    // velocity gained per scrolled pixel
+  const GEAR_FRICTION = 0.95;   // per-frame decay after the impulse stops
+  const GEAR_MAX_VEL = 14;
+  let gearLastY = window.pageYOffset;
+
+  window.addEventListener('scroll', () => {
+    const y = window.pageYOffset;
+    // ignore the synthetic jumps caused by the drawer's scroll lock/unlock
+    if (document.body.classList.contains('drawer-open')) {
+      gearLastY = y;
+      return;
+    }
+    gearVel = clamp(gearVel + (y - gearLastY) * GEAR_IMPULSE, -GEAR_MAX_VEL, GEAR_MAX_VEL);
+    gearLastY = y;
+  }, { passive: true });
+
+  (function gearTick() {
+    gearVel *= GEAR_FRICTION;
+    if (Math.abs(gearVel) < 0.005) gearVel = 0;
+    gearAngle += gearVel;
+    bigGears.forEach(g => { g.style.transform = 'rotate(' + gearAngle + 'deg)'; });
+    smallGears.forEach(g => { g.style.transform = 'rotate(' + (-gearAngle * 2) + 'deg)'; });
+    requestAnimationFrame(gearTick);
+  })();
+</script>
+
+</body>
+</html>

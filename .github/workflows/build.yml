@@ -1,0 +1,42 @@
+name: Build HTML from data
+
+on:
+  push:
+    branches: [master]
+    # Chỉ trigger ở posts.json — luôn là commit CUỐI của mỗi lần Lưu/Xoá trên CMS
+    # (ảnh -> post.json -> posts.json). Nhờ vậy CI không bao giờ build trạng thái
+    # dở dang và mỗi thao tác chỉ chạy đúng 1 lần build.
+    paths:
+      - 'backend/data/posts.json'
+  workflow_dispatch:      # cho phép bấm chạy tay trên tab Actions
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-html
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master   # luôn build từ HEAD mới nhất (kể cả khi run bị xếp hàng)
+
+      - name: Build
+        run: python3 backend/scripts/build.py
+
+      - name: Commit & push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add html
+          if git diff --staged --quiet; then
+            echo "Không có thay đổi."
+          else
+            git commit -m "CI: build html from data"
+            git pull --rebase origin master
+            git push origin master
+          fi
